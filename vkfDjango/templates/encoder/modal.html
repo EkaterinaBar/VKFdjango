@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Сообщение {% endblock %}
+
+{% block content %}
+
+<div id="openModal" class="modalDialog">
+
+        <div>
+    
+            <a href="#" onclick="history.back()" title="Закрыть" class="close">X</a>
+    
+            <h2>Сообщение</h2>
+    
+            <p>{{data}}</p>
+    
+        </div>
+    
+</div>
+    
+
+{% endblock %}

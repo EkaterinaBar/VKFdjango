@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} Главная {% endblock %}
+
+{% block content %}
+
+<form action = "{% url 'encoder:choiceFileFor' %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <button type="submit">Создать таблицу кодировщика</button>
+</form>
+<form action = "#" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <button type="submit">Создать выборку</button>
+</form>
+
+{% endblock %}

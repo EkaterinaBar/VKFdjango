@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %} Выбор файла {% endblock %}
+
+{% block content %}
+
+    <form action = "{% url 'encoder:add_fileFOR' %}" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <p>Выберите файл для кодировщика json/xml:</p>
+        <p><input type="file" name="fileFOR" multiple accept="text/xml, text/json"></p>
+        <button type="submit">Отправить</button>
+    </form>
+    <br>
+    <br>
+    <form action = "#" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <button type="submit">Посмотреть последние файлы</button>
+    </form>
+    <form action = "{% url 'encoder:index' %}" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <button type="submit">На главную</button>
+    </form>
+
+{% endblock %}
