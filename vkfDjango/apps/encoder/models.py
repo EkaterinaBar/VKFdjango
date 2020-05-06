@@ -1,7 +1,4 @@
-
-import datetime
 from django.db import models
-from django.utils import timezone
 
 class FileForEncoder(models.Model):
     file_name = models.CharField('Название файла', max_length = 100)
