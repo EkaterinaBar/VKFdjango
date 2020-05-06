@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %} {{fileFor.file_name}} {% endblock %}
+
+{% block content %}
+
+<form action = "{% url 'encoder:list_filesFor' %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <p><button type="submit">Вернуться к списку файлов</button></p>
+</form>
+
+<h2>{{fileFor.file_name}}</h2>
+<p>{{fileFor.file_path}}</p>
+<form action = "{% url 'encoder:fill_names' fileFor.id %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <button type="submit">СФОРМИРОВАТЬ НОВЫЕ ТАБЛИЦЫ</button>
+</form>
+<br>
+<br>
+{% if fileFor.file_tableEncoder %}
+       <span>
+            <h2>{{fileFor.file_tableEncoder}}</h2>
+            <br>
+            <p><button id="show_text1" onclick="show1()">Показать содержимое таблицы {{fileFor.file_tableEncoder}}</button>
+            <div id = 'what_to_show1' hidden='true'>	
+                <?php
+                    $con_str=mysql_connect('localhost', 'root', 'toor');
+                    mysql_select_db('mushrooms_db',$con_str);
+                    
+                    $result=mysql_query("SELECT * FROM `encoder`");
+                    while($row = mysql_fetch_array($result)){
+                        $id=$row['row_id'];
+                        $name=$row['attribute_name'];
+                        $value=$row['attribute_value'];
+                        $value_letter=$row['value_letter'];
+                        $value_bitset=$row['value_bitset'];
+                        $bitset_length=$row['bitset_length'];
+                        echo "<p>$id - $name - $value - $value_letter - $value_bitset - $bitset_length</p>";
+                        }
+                    mysql_close();
+                ?>
+            </div></p>
+            <script>
+                function show1(){
+                    document.getElementById("what_to_show1").hidden=false
+                    but = document.getElementById("show_text1")
+                    but.innerHTML='Скрыть содержимое таблицы {{fileFor.file_tableEncoder}}'
+                    but.onclick=cancel1
+                        
+                    }
+                function cancel1(){
+                    document.getElementById("what_to_show1").hidden=true
+                    but = document.getElementById("show_text1")
+                    but.innerHTML='Показать содержимое таблицы {{fileFor.file_tableEncoder}}'
+                    but.onclick=show1
+                    }
+            </script>
+        </span>
+        <span>
+            <h2>{{fileFor.file_tableOrderings}}</h2>
+            <br>
+            <p><button id="show_text2" onclick="show2()">Показать содержимое таблицы {{fileFor.file_tableOrderings}}</button>
+            <div id = 'what_to_show2' hidden='true'>тут будет содержимое</div></p>
+            <script>
+                function show2(){
+                    document.getElementById("what_to_show2").hidden=false
+                    but = document.getElementById("show_text2")
+                    but.innerHTML='Скрыть содержимое таблицы {{fileFor.file_tableOrderings}}'
+                    but.onclick=cancel2
+                        
+                    }
+                function cancel2(){
+                    document.getElementById("what_to_show2").hidden=true
+                    but = document.getElementById("show_text2")
+                    but.innerHTML='Показать содержимое таблицы {{fileFor.file_tableOrderings}}'
+                    but.onclick=show2
+                    }
+            </script>
+        </span>
+{% else %}
+    Таблицы еще не сформированы
+{% endif %}
+
+
+
+{% endblock %}

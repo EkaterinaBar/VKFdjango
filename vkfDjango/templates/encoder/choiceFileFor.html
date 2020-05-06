@@ -12,7 +12,7 @@
     </form>
     <br>
     <br>
-    <form action = "#" enctype="multipart/form-data" method="post">
+    <form action = "{% url 'encoder:list_filesFor' %}" enctype="multipart/form-data" method="post">
         {% csrf_token %}
         <button type="submit">Посмотреть последние файлы</button>
     </form>
