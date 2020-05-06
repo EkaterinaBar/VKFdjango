@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %} Создание таблицы {% endblock %}
+
+{% block content %}
+
+    <form action = "{% url 'encoder:add_sample' %}" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <p>Выберите файл для выборки:</p>
+        <p><input type="file" name="sample_file"></p>
+        <p><input type="radio" name="sample_type" value="train"> Обучающая 
+            <input type="radio" name="sample_type" value="test"> Тестовая </p>
+        <p>Целевое свойство: <input type="text" name="sample_attr"></p>
+        <p>Имя таблицы: <input type="text" name="sample_table"></p>
+        <p>Выберите кодировщик::</p>
+        {% if filesFor %}
+            {% for f in filesFor %}
+                <p>Кодировщик от {{f.file_name}}: 
+                    <input type="radio" name="sample_encoder" value={{f.file_tableEncoder}}> {{f.file_tableEncoder}}  
+                </p>
+                
+            {% endfor %}
+        {% else %}
+            Создайте сначала таблицу для кодировщика!
+        {% endif %}
+
+        <button type="submit">Загрузить</button>
+    </form>
+    <br>
+    <br>
+    <form action = "{% url 'encoder:list_samples' %}" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <button type="submit">Посмотреть существующие выборки</button>
+    </form>
+    <form action = "{% url 'encoder:index' %}" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <button type="submit">На главную</button>
+    </form>
+
+{% endblock %}

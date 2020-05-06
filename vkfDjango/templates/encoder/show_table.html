@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} Таблица {{table_name}} {% endblock %}
+
+{% block content %}
+<script>
+    function funonload() {
+        what_url = document.getElementById('have_url');
+        back = document.getElementById('back');
+        stroka_url = what_url.innerHTML
+        back.setAttribute('action', stroka_url);
+    };
+</script>
+
+<form id = 'back' action="#" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <button type="submit">Назад</button>
+</form>
+    {% if rows %}
+
+        {% for row in rows %}
+            <p>{{row}}</p>
+        {% endfor %}
+
+    {% else %}
+         Строк нет
+    {% endif %}
+
+    <div id = 'have_url' hidden = 'true' >{{urlForAction}}</div>
+    
+
+{% endblock %}

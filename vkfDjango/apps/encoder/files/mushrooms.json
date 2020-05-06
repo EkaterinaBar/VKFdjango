@@ -1,0 +1,1945 @@
+{
+    "document": {
+        "<xmlattr>": {
+            "name": "mushrooms_db"
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "cap_shape"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "bell",
+                        "char": "b"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "conical",
+                        "char": "c"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "convex",
+                        "char": "x"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "flat",
+                        "char": "f"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "knobbed",
+                        "char": "k"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "sunken",
+                        "char": "s"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "bell",
+                        "target": "convex"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "conical",
+                        "target": "convex"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "convex",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "flat",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "knobbed",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "sunken",
+                        "target": "knobbed"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "cap_surface"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "fibrous",
+                        "char": "f"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "grooves",
+                        "char": "g"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "scaly",
+                        "char": "y"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "smooth",
+                        "char": "s"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "fibrous",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "grooves",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "scaly",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "smooth",
+                        "target": "null"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "cap_color"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "brown",
+                        "char": "n"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "buff",
+                        "char": "b"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "cinnamon",
+                        "char": "c"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "gray",
+                        "char": "g"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "green",
+                        "char": "r"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "pink",
+                        "char": "p"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "purple",
+                        "char": "u"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "red",
+                        "char": "e"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "white",
+                        "char": "w"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "yellow",
+                        "char": "y"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "brown",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "buff",
+                        "target": "brown"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "buff",
+                        "target": "yellow"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "cinnamon",
+                        "target": "brown"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "cinnamon",
+                        "target": "red"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "gray",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "green",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "pink",
+                        "target": "red"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "pink",
+                        "target": "white"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "purple",
+                        "target": "red"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "red",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "white",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "yellow",
+                        "target": "null"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "bruises"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "yes",
+                        "char": "t"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "no",
+                        "char": "f"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "yes",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "no",
+                        "target": "null"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "odor"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "almond",
+                        "char": "l"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "anise",
+                        "char": "a"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "creosote",
+                        "char": "c"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "fishy",
+                        "char": "y"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "foul",
+                        "char": "f"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "musty",
+                        "char": "m"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "none",
+                        "char": "n"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "pungent",
+                        "char": "p"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "spicy",
+                        "char": "s"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "almond",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "anise",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "creosote",
+                        "target": "pungent"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "fishy",
+                        "target": "pungent"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "foul",
+                        "target": "pungent"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "musty",
+                        "target": "pungent"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "none",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "pungent",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "spicy",
+                        "target": "pungent"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "gill_attachment"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "attached",
+                        "char": "a"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "descending",
+                        "char": "d"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "free",
+                        "char": "f"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "notched",
+                        "char": "n"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "attached",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "descending",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "free",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "notched",
+                        "target": "null"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "gill_spacing"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "close",
+                        "char": "c"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "crowded",
+                        "char": "w"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "distant",
+                        "char": "d"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "close",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "crowded",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "distant",
+                        "target": "null"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "gill_size"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "broad",
+                        "char": "b"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "narrow",
+                        "char": "n"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "broad",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "narrow",
+                        "target": "null"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "gill_color"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "black",
+                        "char": "k"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "brown",
+                        "char": "n"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "buff",
+                        "char": "b"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "chocolate",
+                        "char": "h"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "cinnamon",
+                        "char": "c"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "gray",
+                        "char": "g"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "green",
+                        "char": "r"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "orange",
+                        "char": "o"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "pink",
+                        "char": "p"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "purple",
+                        "char": "u"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "red",
+                        "char": "e"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "white",
+                        "char": "w"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "yellow",
+                        "char": "y"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "black",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "brown",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "buff",
+                        "target": "brown"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "buff",
+                        "target": "yellow"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "chocolate",
+                        "target": "brown"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "cinnamon",
+                        "target": "brown"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "cinnamon",
+                        "target": "red"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "gray",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "green",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "orange",
+                        "target": "red"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "orange",
+                        "target": "yellow"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "pink",
+                        "target": "red"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "pink",
+                        "target": "white"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "purple",
+                        "target": "red"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "red",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "white",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "yellow",
+                        "target": "null"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "stalk_shape"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "enlarging",
+                        "char": "e"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "tapering",
+                        "char": "t"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "enlarging",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "tapering",
+                        "target": "null"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "stalk_root"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "bulbous",
+                        "char": "b"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "club",
+                        "char": "c"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "cup",
+                        "char": "u"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "equal",
+                        "char": "e"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "rhizomorphs",
+                        "char": "z"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "rooted",
+                        "char": "r"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "bulbous",
+                        "target": "club"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "club",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "cup",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "equal",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "rhizomorphs",
+                        "target": "rooted"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "rooted",
+                        "target": "null"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "stalk_surface_above_ring"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "fibrous",
+                        "char": "f"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "scaly",
+                        "char": "y"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "silky",
+                        "char": "k"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "smooth",
+                        "char": "s"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "fibrous",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "scaly",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "silky",
+                        "target": "smooth"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "smooth",
+                        "target": "null"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "stalk_surface_below_ring"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "fibrous",
+                        "char": "f"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "scaly",
+                        "char": "y"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "silky",
+                        "char": "k"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "smooth",
+                        "char": "s"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "fibrous",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "scaly",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "silky",
+                        "target": "smooth"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "smooth",
+                        "target": "null"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "stalk_color_above_ring"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "brown",
+                        "char": "n"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "buff",
+                        "char": "b"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "cinnamon",
+                        "char": "c"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "gray",
+                        "char": "g"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "orange",
+                        "char": "o"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "pink",
+                        "char": "p"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "red",
+                        "char": "e"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "white",
+                        "char": "w"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "yellow",
+                        "char": "y"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "brown",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "buff",
+                        "target": "brown"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "buff",
+                        "target": "yellow"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "cinnamon",
+                        "target": "brown"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "cinnamon",
+                        "target": "red"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "gray",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "orange",
+                        "target": "red"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "orange",
+                        "target": "yellow"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "pink",
+                        "target": "red"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "pink",
+                        "target": "white"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "red",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "white",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "yellow",
+                        "target": "null"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "stalk_color_below_ring"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "brown",
+                        "char": "n"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "buff",
+                        "char": "b"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "cinnamon",
+                        "char": "c"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "gray",
+                        "char": "g"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "orange",
+                        "char": "o"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "pink",
+                        "char": "p"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "red",
+                        "char": "e"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "white",
+                        "char": "w"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "yellow",
+                        "char": "y"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "brown",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "buff",
+                        "target": "brown"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "buff",
+                        "target": "yellow"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "cinnamon",
+                        "target": "brown"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "cinnamon",
+                        "target": "red"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "gray",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "orange",
+                        "target": "red"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "orange",
+                        "target": "yellow"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "pink",
+                        "target": "red"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "pink",
+                        "target": "white"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "red",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "white",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "yellow",
+                        "target": "null"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "veil_type"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "partial",
+                        "char": "p"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "universal",
+                        "char": "u"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "partial",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "universal",
+                        "target": "null"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "veil_color"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "brown",
+                        "char": "n"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "orange",
+                        "char": "o"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "white",
+                        "char": "w"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "yellow",
+                        "char": "y"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "brown",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "orange",
+                        "target": "yellow"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "white",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "yellow",
+                        "target": "null"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "ring_number"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "none",
+                        "char": "n"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "one",
+                        "char": "o"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "two",
+                        "char": "t"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "none",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "one",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "two",
+                        "target": "one"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "ring_type"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "cobwebby",
+                        "char": "c"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "evanescent",
+                        "char": "e"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "flaring",
+                        "char": "f"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "large",
+                        "char": "l"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "none",
+                        "char": "n"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "pendant",
+                        "char": "p"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "sheathing",
+                        "char": "s"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "zone",
+                        "char": "z"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "cobwebby",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "evanescent",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "flaring",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "large",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "none",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "pendant",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "sheathing",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "zone",
+                        "target": "null"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "spore_print_color"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "black",
+                        "char": "k"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "brown",
+                        "char": "n"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "buff",
+                        "char": "b"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "chocolate",
+                        "char": "h"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "green",
+                        "char": "r"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "orange",
+                        "char": "o"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "purple",
+                        "char": "u"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "white",
+                        "char": "w"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "yellow",
+                        "char": "y"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "black",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "brown",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "buff",
+                        "target": "brown"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "buff",
+                        "target": "yellow"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "chocolate",
+                        "target": "brown"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "green",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "orange",
+                        "target": "yellow"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "purple",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "white",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "yellow",
+                        "target": "null"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "population"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "abundant",
+                        "char": "a"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "clustered",
+                        "char": "c"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "numerous",
+                        "char": "n"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "scattered",
+                        "char": "s"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "several",
+                        "char": "v"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "solitary",
+                        "char": "y"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "abundant",
+                        "target": "numerous"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "clustered",
+                        "target": "numerous"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "numerous",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "scattered",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "several",
+                        "target": "solitary"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "solitary",
+                        "target": "null"
+                    }
+                }
+            }
+        },
+        "attribute": {
+            "<xmlattr>": {
+                "name": "habitat"
+            },
+            "vertices": {
+                "node": {
+                    "<xmlattr>": {
+                        "string": "null",
+                        "char": "_"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "grasses",
+                        "char": "g"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "leaves",
+                        "char": "l"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "meadows",
+                        "char": "m"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "paths",
+                        "char": "p"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "urban",
+                        "char": "u"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "waste",
+                        "char": "w"
+                    }
+                },
+                "node": {
+                    "<xmlattr>": {
+                        "string": "woods",
+                        "char": "d"
+                    }
+                }
+            },
+            "edges": {
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "grasses",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "leaves",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "meadows",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "paths",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "urban",
+                        "target": "null"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "waste",
+                        "target": "urban"
+                    }
+                },
+                "arc": {
+                    "<xmlattr>": {
+                        "source": "woods",
+                        "target": "null"
+                    }
+                }
+            }
+        }
+    }
+}

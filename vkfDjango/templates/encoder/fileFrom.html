@@ -21,61 +21,29 @@
        <span>
             <h2>{{fileFor.file_tableEncoder}}</h2>
             <br>
-            <p><button id="show_text1" onclick="show1()">Показать содержимое таблицы {{fileFor.file_tableEncoder}}</button>
-            <div id = 'what_to_show1' hidden='true'>	
-                <?php
-                    $con_str=mysql_connect('localhost', 'root', 'toor');
-                    mysql_select_db('mushrooms_db',$con_str);
-                    
-                    $result=mysql_query("SELECT * FROM `encoder`");
-                    while($row = mysql_fetch_array($result)){
-                        $id=$row['row_id'];
-                        $name=$row['attribute_name'];
-                        $value=$row['attribute_value'];
-                        $value_letter=$row['value_letter'];
-                        $value_bitset=$row['value_bitset'];
-                        $bitset_length=$row['bitset_length'];
-                        echo "<p>$id - $name - $value - $value_letter - $value_bitset - $bitset_length</p>";
-                        }
-                    mysql_close();
-                ?>
-            </div></p>
-            <script>
-                function show1(){
-                    document.getElementById("what_to_show1").hidden=false
-                    but = document.getElementById("show_text1")
-                    but.innerHTML='Скрыть содержимое таблицы {{fileFor.file_tableEncoder}}'
-                    but.onclick=cancel1
-                        
-                    }
-                function cancel1(){
-                    document.getElementById("what_to_show1").hidden=true
-                    but = document.getElementById("show_text1")
-                    but.innerHTML='Показать содержимое таблицы {{fileFor.file_tableEncoder}}'
-                    but.onclick=show1
-                    }
-            </script>
+            <form action = "{% url 'encoder:show_table' fileFor.id fileFor.file_tableEncoder 'files' %}" enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                <button type="submit">Показать содержимое таблицы {{fileFor.file_tableEncoder}}</button>
+            </form>
         </span>
         <span>
             <h2>{{fileFor.file_tableOrderings}}</h2>
             <br>
-            <p><button id="show_text2" onclick="show2()">Показать содержимое таблицы {{fileFor.file_tableOrderings}}</button>
-            <div id = 'what_to_show2' hidden='true'>тут будет содержимое</div></p>
-            <script>
-                function show2(){
-                    document.getElementById("what_to_show2").hidden=false
-                    but = document.getElementById("show_text2")
-                    but.innerHTML='Скрыть содержимое таблицы {{fileFor.file_tableOrderings}}'
-                    but.onclick=cancel2
-                        
-                    }
-                function cancel2(){
-                    document.getElementById("what_to_show2").hidden=true
-                    but = document.getElementById("show_text2")
-                    but.innerHTML='Показать содержимое таблицы {{fileFor.file_tableOrderings}}'
-                    but.onclick=show2
-                    }
-            </script>
+            <form action = "{% url 'encoder:show_table' fileFor.id fileFor.file_tableOrderings 'files' %}" enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                <button type="submit">Показать содержимое таблицы {{fileFor.file_tableOrderings}}</button>
+            </form>
+        </span>
+        <span>
+            <br>
+            <form action = "{% url 'encoder:create_file' fileFor.id 'xml' %}" enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                <button type="submit">Сформировать из таблиц XML</button>
+            </form>
+            <form action = "{% url 'encoder:create_file' fileFor.id 'json' %}" enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                <button type="submit">Сформировать из таблиц JSON</button>
+            </form>
         </span>
 {% else %}
     Таблицы еще не сформированы

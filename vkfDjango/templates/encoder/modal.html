@@ -4,17 +4,27 @@
 
 {% block content %}
 
+<script>
+    function funonload() {
+        what_url = document.getElementById('have_url');
+        back = document.getElementById('back');
+        stroka_url = what_url.innerHTML
+        back.setAttribute('href', stroka_url);
+    };
+</script>
+
 <div id="openModal" class="modalDialog">
 
         <div>
     
-            <a href="#" onclick="history.back()" title="Закрыть" class="close">X</a>
+            <a id ='back' href="#" onclick="history.back()" title="Закрыть" class="close">X</a>
     
             <h2>Сообщение</h2>
     
             <p>{{data}}</p>
     
         </div>
+        <div id = 'have_url' hidden = 'true' >{{urlForAction}}</div>
     
 </div>
     

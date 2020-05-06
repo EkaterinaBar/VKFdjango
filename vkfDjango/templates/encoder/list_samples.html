@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %} Существующие выборки {% endblock %}
+
+{% block content %}
+
+    {% if samples %}
+
+        {% for s in samples %}
+
+            <table border="1" >
+                <caption>{{s.fileSample_name}}</caption>
+                <tr>
+                <th>Тип выборки</th>
+                <th>Название файла</th>
+                <th>Целевое свойство</th>
+                <th>Имя таблицы в базе</th>
+                <th>Имя таблицы-кодировщика</th>
+                <th>Содержание таблицы</th>
+                </tr>
+                <tr>
+                <td>{{s.fileSample_type}}</td>
+                <td>{{s.fileSample_name}}</td>
+                <td>{{s.fileSample_attr}}</td>
+                <td>{{s.fileSample_table}}</td>
+                <td>{{s.fileSample_encoder}}</td>
+                <td>
+                    <form action = "{% url 'encoder:show_table' s.id s.fileSample_table 'samples' %}" enctype="multipart/form-data" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Посмотреть</button>
+                    </form>
+                </td>
+            </tr>
+            </table>
+
+        {% endfor %}
+
+    {% else %}
+        Пока выборок нет
+    {% endif %}
+
+    <form action = "{% url 'encoder:create_table' %}" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <button type="submit">Назад</button>
+    </form>
+    
+
+{% endblock %}

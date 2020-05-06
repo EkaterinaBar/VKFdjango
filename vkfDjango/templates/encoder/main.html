@@ -8,7 +8,7 @@
     {% csrf_token %}
     <button type="submit">Создать таблицу кодировщика</button>
 </form>
-<form action = "#" enctype="multipart/form-data" method="post">
+<form action = "{% url 'encoder:create_table' %}" enctype="multipart/form-data" method="post">
     {% csrf_token %}
     <button type="submit">Создать выборку</button>
 </form>
