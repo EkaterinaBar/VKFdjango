@@ -6,15 +6,15 @@
 
 <h4>{{data}}</h4>
 
-<form action = "#" enctype="multipart/form-data" method="post">
+<form action = "{% url 'vkfsys:show_table' ex.id %}" enctype="multipart/form-data" method="post">
     {% csrf_token %}
     <button type="submit">Посмотреть таблицу '{{ex.table_hyps}}'</button>
 </form>
-<form action = "#" enctype="multipart/form-data" method="post">
+<form action = "{% url 'vkfsys:for_add_hyps' ex.id %}" enctype="multipart/form-data" method="post">
     {% csrf_token %}
     <button type="submit">Добавить гипотезы</button>
 </form>
-<form action = "#" enctype="multipart/form-data" method="post">
+<form action = "{% url 'vkfsys:choice_test' ex.id %}" enctype="multipart/form-data" method="post">
     {% csrf_token %}
     <button type="submit">Далее</button>
 </form>

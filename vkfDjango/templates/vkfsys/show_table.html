@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Таблица {{table_name}} {% endblock %}
+
+{% block content %}
+
+<form action="{% url 'vkfsys:ct_return' ex.id %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <button type="submit">Назад</button>
+</form>
+    {% if rows %}
+
+        {% for row in rows %}
+            <p>{{row}}</p>
+        {% endfor %}
+
+    {% else %}
+         Строк нет
+    {% endif %}
+    
+
+{% endblock %}

@@ -8,7 +8,7 @@
     {% csrf_token %}
     <button type="submit">Создать новый эксперимент</button>
 </form>
-<form action = "#" enctype="multipart/form-data" method="post">
+<form action = "{% url 'vkfsys:list_exs' %}" enctype="multipart/form-data" method="post">
     {% csrf_token %}
     <button type="submit">Посмотреть предыдущие</button>
 </form>

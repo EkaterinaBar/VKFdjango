@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}  Добавить гипотезы {% endblock %}
+
+{% block content %}
+<form action = "{% url 'vkfsys:add_hyps' ex_id %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <h4>Введите количество гипотез:</h4>
+    <input type="number" name="num_hyps" > 
+    <h4>Введите количество потоков:</h4>
+    <input type="number" name="num_thr" >
+    <br> <br> 
+    <button type="submit">Добавить</button>
+</form>
+<form action = "{% url 'vkfsys:ct_return' ex_id %}" enctype="multipart/form-data" method="post">
+{% csrf_token %}
+<button type="submit">Отмена</button>
+</form>
+{% endblock %}

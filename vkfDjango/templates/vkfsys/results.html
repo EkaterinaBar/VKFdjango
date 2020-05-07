@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} Результаты {% endblock %}
+
+{% block content %}
+
+<h4>Результаты работы ВКФ-системы:</h4>
+<p>Количество положительных примеров: {{positive}}</p>
+<p>Количество отрицательных примеров: {{negative}}</p>
+<form action = "{% url 'vkfsys:index' %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <button type="submit">На главную</button>
+</form>
+
+
+
+{% endblock %}

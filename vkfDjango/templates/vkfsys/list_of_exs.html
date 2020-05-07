@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}  Предыдущие эксперименты {% endblock %}
+
+{% block content %}
+
+    {% if list_of_exs %}
+
+        {% for ex in list_of_exs %}
+
+            <table border="1" >
+                <tr>
+                <th>Имя таблицы с кодировщиком</th>
+                <th>Имя таблицы с обучающей выборкой</th>
+                <th>Имя таблицы с гипотезами</th>
+                <th>Количество гипотез</th>
+                <th>Имя таблицы с тестовой выборкой</th>
+                <th>Количество положительных примеров</th>
+                <th>Количество негативных примеров</th>
+                </tr>
+                <tr>
+                <td>{{ex.table_enc}}</td>
+                <td>{{ex.table_samp}}</td>
+                <td>{{ex.table_hyps}}</td>
+                <td>{{ex.num_hyps}}</td>
+                <td>{{ex.table_test}}</td>
+                <td>{{ex.num_pos}}</td>
+                <td>{{ex.num_neg}}</td>
+            </tr>
+            </table>
+
+        {% endfor %}
+
+    {% else %}
+        Пока экспериментов нет
+    {% endif %}
+
+    <form action = "{% url 'vkfsys:index' %}" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <button type="submit">Назад</button>
+    </form>
+    
+
+{% endblock %}

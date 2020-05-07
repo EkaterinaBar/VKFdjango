@@ -9,6 +9,9 @@ from .models import Experiment
 from .db_settings import VKFConfig
 from encoder.models import FileForEncoder, SampleForVKF
 
+enc = None
+ind = None
+
 def index(request):
     return render(request, 'vkfsys/main.html')
 
@@ -34,7 +37,7 @@ def create_table(request):
         table_samp = request.POST['table_samp']
     except Exception as e:
         print(e)
-        return render(request, 'encoder/modal.html', {'data': 'Вы не выбрали таблицы', 'urlForAction': url})
+        return render(request, 'vkfsys/modal.html', {'data': 'Вы не выбрали таблицы', 'urlForAction': url})
     table_hyps = request.POST['table_hyps']
     num_hyps = request.POST['num_hyps']
     num_thr = request.POST['num_thr']
@@ -49,10 +52,12 @@ def create_table(request):
         return render(request, 'vkfsys/modal.html', {'data': 'Ошибка на этапе удаления существующей таблицы из базы: '+ str(e), 'urlForAction': url}) 
 
     try:
+        global enc
         enc = vkf.Encoder(table_enc, VKFConfig.DB_NAME, VKFConfig.DB_HOST,VKFConfig.DB_USER, VKFConfig.DB_PSWD)
     except Exception as e:
         return render(request, 'vkfsys/modal.html', {'data': 'Ошибка на этапе vkf.Encoder: '+ str(e), 'urlForAction': url}) 
     try:
+        global ind
         ind = vkf.Induction()
     except Exception as e:
         return render(request, 'vkfsys/modal.html', {'data': 'Ошибка на этапе vkf.Induction: '+ str(e), 'urlForAction': url}) 
@@ -76,3 +81,117 @@ def create_table(request):
         return render(request, 'vkfsys/modal.html', {'data': 'Ошибка на этапе записи информации об эксперименте в базу: '+ str(e), 'urlForAction': url})
 
     return render(request, 'vkfsys/create_table.html', {'data': ' Таблица с гипотезами '+ table_hyps + ' создана', 'ex': ex}) 
+
+def show_table(request, ex_id):
+    try:
+        ex = Experiment.objects.get(id = ex_id) 
+    except Exception as e:
+        raise Http404("Файл не найден: "+ str(e))
+    table_name = ex.table_hyps 
+    try:
+        con = pymysql.connect(VKFConfig.DB_HOST, VKFConfig.DB_USER, VKFConfig.DB_PSWD, VKFConfig.DB_NAME) 
+        with con: 
+            cur = con.cursor()
+            cur.execute("SELECT * FROM " + table_name)
+            rows = cur.fetchall()
+    except Exception as e:
+        raise Http404("Ошибка при чтении данных из таблицы: " + str(e))
+    return render(request, 'vkfsys/show_table.html', {'rows': rows,'ex': ex, 'table_name': table_name})
+
+def ct_return(request, ex_id):
+    try:
+        ex = Experiment.objects.get(id = ex_id) 
+    except Exception as e:
+        raise Http404("Файл не найден: "+ str(e))
+    return render(request, 'vkfsys/create_table.html', {'data': 'Таблица с гипотезами ' + ex.table_hyps, 'ex': ex}) 
+
+def for_add_hyps(request, ex_id):
+    return render(request, 'vkfsys/for_add_hyps.html', {'ex_id': ex_id}) 
+
+def add_hyps(request, ex_id):
+    try:
+        ex = Experiment.objects.get(id = ex_id) 
+    except Exception as e:
+        raise Http404("Файл не найден: "+ str(e))
+    table_enc = ex.table_enc
+    table_samp = ex.table_samp
+    table_hyps = ex.table_hyps
+    num_hyps = request.POST['num_hyps']
+    num_thr = request.POST['num_thr']
+    url = '/vkfsys/induction/create_table/ct_return/' + str(ex_id)
+    if num_hyps=='' or num_thr=='':
+        return render(request, 'vkfsys/modal.html', {'data': 'Вы ввели неправильные данные или не ввели данные', 'urlForAction': url})     
+    try: 
+        global ind
+        ind.load_hypotheses(enc, table_samp, table_hyps, VKFConfig.DB_NAME, VKFConfig.DB_HOST, VKFConfig.DB_USER, VKFConfig.DB_PSWD)
+    except Exception as e:
+        return render(request, 'vkfsys/modal.html', {'data': 'Ошибка на этапе vkf.load_hypotheses: '+ str(e), 'urlForAction': url}) 
+    try: 
+        ind.add_hypotheses(int(num_hyps), int(num_thr))
+    except Exception as e:
+        return render(request, 'vkfsys/modal.html', {'data': 'Ошибка на этапе vkf.add_hypotheses: '+ str(e), 'urlForAction': url}) 
+    try: 
+        ind.save_hypotheses(enc, table_hyps, VKFConfig.DB_NAME, VKFConfig.DB_HOST, VKFConfig.DB_USER, VKFConfig.DB_PSWD)
+    except Exception as e:
+        return render(request, 'vkfsys/modal.html', {'data': 'Ошибка на этапе vkf.save_hypotheses: '+ str(e), 'urlForAction': url})
+    try:
+        ex.num_hyps += int(num_hyps)
+        ex.save()
+    except Exception as e:
+        return render(request, 'vkfsys/modal.html', {'data': 'Ошибка на этапе сохранения нового значения количества гипотез: '+ str(e), 'urlForAction': url})
+    
+    return render(request, 'vkfsys/create_table.html', {'data': 'Гипотезы добавлены. В количестве: ' + num_hyps, 'ex': ex}) 
+
+def choice_test(request, ex_id):
+    try:
+        ex = Experiment.objects.get(id = ex_id) 
+    except Exception as e:
+        raise Http404("Файл не найден: "+ str(e))
+    samples = SampleForVKF.objects.order_by('fileSample_name')
+    test_samples = [] #список тестовых выборок для нашего table_enc 
+    if samples:
+        for s in samples:
+            if s.fileSample_encoder == ex.table_enc and s.fileSample_type == 'test':
+                test_samples.append(s)
+    return render(request, 'vkfsys/choice_test.html', {'test_samples':test_samples, 'ex_id':ex_id})
+
+def prediction(request, ex_id):
+    try:
+        ex = Experiment.objects.get(id = ex_id) 
+    except Exception as e:
+        raise Http404("Файл не найден: "+ str(e))
+    table_enc = ex.table_enc
+    table_samp = ex.table_samp
+    table_hyps = ex.table_hyps
+    url = '/vkfsys/induction/create_table/choice_test/' + str(ex_id)
+    try:
+        table_test = request.POST['table_test']
+    except Exception as e:
+        print(e)
+        return render(request, 'vkfsys/modal.html', {'data': 'Вы не выбрали таблицу с выборкой', 'urlForAction': url})
+    
+    try:
+        global ind
+        ind.load_hypotheses(enc, table_samp, table_hyps, VKFConfig.DB_NAME, VKFConfig.DB_HOST, VKFConfig.DB_USER, VKFConfig.DB_PSWD)
+    except Exception as e:
+        return render(request, 'vkfsys/modal.html', {'data': 'Ошибка на этапе vkf.load_hypotheses: '+ str(e), 'urlForAction': url}) 
+    try:    
+        tes = vkf.TestSample(enc, ind, table_test, VKFConfig.DB_NAME, VKFConfig.DB_HOST, VKFConfig.DB_USER, VKFConfig.DB_PSWD)
+    except Exception as e:
+        return render(request, 'vkfsys/modal.html', {'data': 'Ошибка на этапе vkf.TestSample: '+ str(e), 'urlForAction': url}) 
+   
+    positive=str(tes.correct_positive_cases())
+    negative=str(tes.correct_negative_cases())
+
+    try:
+        ex.table_test = table_test
+        ex.num_pos = positive
+        ex.num_neg = negative
+        ex.save()
+    except Exception as e:
+        return render(request, 'vkfsys/modal.html', {'data': 'Ошибка на этапе сохранения результатов в базу: '+ str(e), 'urlForAction': url}) 
+    return render(request, 'vkfsys/results.html', {'positive': positive, 'negative': negative}) 
+
+def list_exs(request):
+    list_of_exs = Experiment.objects.order_by('id')
+    return render(request, 'vkfsys/list_of_exs.html', {'list_of_exs': list_of_exs})
