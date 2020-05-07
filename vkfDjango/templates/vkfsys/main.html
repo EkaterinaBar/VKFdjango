@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<form action = "#" enctype="multipart/form-data" method="post">
+<form action = "{% url 'vkfsys:induction' %}" enctype="multipart/form-data" method="post">
     {% csrf_token %}
     <button type="submit">Создать новый эксперимент</button>
 </form>

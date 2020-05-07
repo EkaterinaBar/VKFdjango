@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Таблица {{ex.table_hyps}} {% endblock %}
+
+{% block content %}
+
+<h4>{{data}}</h4>
+
+<form action = "#" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <button type="submit">Посмотреть таблицу '{{ex.table_hyps}}'</button>
+</form>
+<form action = "#" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <button type="submit">Добавить гипотезы</button>
+</form>
+<form action = "#" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <button type="submit">Далее</button>
+</form>
+
+{% endblock %}

@@ -135,8 +135,8 @@ def add_sample(request):
     except Exception as e:
         print(e)
         raise Http404("Неправильный путь!")
-    if SampleForVKF.objects.filter(fileSample_name=name):
-        return render(request, 'encoder/modal.html', {'data': 'Таблица для файла с таким именем уже существует в базе. Просмотрите существующие таблицы.', 'urlForAction': url})
+    if SampleForVKF.objects.filter(fileSample_name=name) and SampleForVKF.objects.filter(fileSample_encoder=fileSample_encoder) and SampleForVKF.objects.filter(fileSample_attr=fileSample_attr):
+        return render(request, 'encoder/modal.html', {'data': 'Таблица для файла с таким именем, кодировщиком и целевым свойством уже существует в базе. Просмотрите существующие таблицы.', 'urlForAction': url})
     try:
         vkfencoder.DataImport(file_path, fileSample_attr, fileSample_encoder, fileSample_table, VKFConfig.DB_NAME, VKFConfig.DB_HOST, VKFConfig.DB_USER, VKFConfig.DB_PSWD)
         f = SampleForVKF(fileSample_type = fileSample_type, fileSample_name = name, fileSample_path = file_path, fileSample_attr = fileSample_attr, fileSample_table = fileSample_table, fileSample_encoder = fileSample_encoder)
