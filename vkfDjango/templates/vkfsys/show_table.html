@@ -7,16 +7,23 @@
 <form action="{% url 'vkfsys:ct_return' ex.id %}" enctype="multipart/form-data" method="post">
     {% csrf_token %}
     <button type="submit">Назад</button>
-</form>
-    {% if rows %}
-
-        {% for row in rows %}
-            <p>{{row}}</p>
-        {% endfor %}
-
-    {% else %}
-         Строк нет
-    {% endif %}
-    
+</form> 
+    <ol>
+        {% if dict_of_hyps %}
+            {% for key, value in dict_of_hyps.items %}
+            <li>
+                <div>
+                    {% if value %}
+                        {% for s in value %}
+                            {{s}}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}         
+        {% else %}
+             Гипотез нет!
+        {% endif %}
+        </ol>
 
 {% endblock %}

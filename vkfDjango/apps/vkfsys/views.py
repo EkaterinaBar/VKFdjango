@@ -83,20 +83,31 @@ def create_table(request):
     return render(request, 'vkfsys/create_table.html', {'data': ' Таблица с гипотезами '+ table_hyps + ' создана', 'ex': ex}) 
 
 def show_table(request, ex_id):
+    url = '/vkfsys/induction/create_table/ct_return/'+ str(ex_id)
     try:
         ex = Experiment.objects.get(id = ex_id) 
     except Exception as e:
         raise Http404("Файл не найден: "+ str(e))
-    table_name = ex.table_hyps 
     try:
-        con = pymysql.connect(VKFConfig.DB_HOST, VKFConfig.DB_USER, VKFConfig.DB_PSWD, VKFConfig.DB_NAME) 
-        with con: 
-            cur = con.cursor()
-            cur.execute("SELECT * FROM " + table_name)
-            rows = cur.fetchall()
+        dict_of_hyps = {}
+        global ind, enc
+        for i in range(ex.num_hyps):
+            list_of_attr_one_hyp =  ind.show_hypothesis(enc, i) #i - номер гипотезы.
+            dict_of_hyps[i] = list_of_attr_one_hyp
     except Exception as e:
-        raise Http404("Ошибка при чтении данных из таблицы: " + str(e))
-    return render(request, 'vkfsys/show_table.html', {'rows': rows,'ex': ex, 'table_name': table_name})
+        return render(request, 'vkfsys/modal.html', {'data': 'Ошибка на этапе создания списка гипотез с признаками: '+ str(e), 'urlForAction': url})
+
+    table_name = ex.table_hyps 
+    # try:
+    #     con = pymysql.connect(VKFConfig.DB_HOST, VKFConfig.DB_USER, VKFConfig.DB_PSWD, VKFConfig.DB_NAME) 
+    #     with con: 
+    #         cur = con.cursor()
+    #         cur.execute("SELECT * FROM " + table_name)
+    #         rows = cur.fetchall()
+    # except Exception as e:
+    #     raise Http404("Ошибка при чтении данных из таблицы: " + str(e))
+
+    return render(request, 'vkfsys/show_table.html', {'dict_of_hyps': dict_of_hyps,'ex': ex, 'table_name': table_name})
 
 def ct_return(request, ex_id):
     try:
