@@ -8,10 +8,11 @@ from pathlib import Path
 from .models import Experiment
 from .db_settings import VKFConfig
 from encoder.models import FileForEncoder, SampleForVKF
+from django.contrib.auth.decorators import login_required
 
 enc = None
 ind = None
-
+@login_required(login_url='login')
 def index(request):
     return render(request, 'vkfsys/main.html')
 
@@ -47,7 +48,7 @@ def create_table(request):
         con = pymysql.connect(VKFConfig.DB_HOST, VKFConfig.DB_USER, VKFConfig.DB_PSWD, VKFConfig.DB_NAME) 
         with con: 
             cur = con.cursor()
-            cur.execute("DROP TABLE " + table_hyps + ';')
+            cur.execute("DROP TABLE IF EXISTS " + table_hyps + ';')
     except Exception as e:
         return render(request, 'vkfsys/modal.html', {'data': 'Ошибка на этапе удаления существующей таблицы из базы: '+ str(e), 'urlForAction': url}) 
 

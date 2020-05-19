@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+
+{% block title %} Главная {% endblock %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+     </button>
+     <div class="collapse navbar-collapse" id="navbarNav">
+       <ul class="navbar-nav">
+         <li class="nav-item active">
+           <a class="nav-link" href="#">Мой профиль</a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+         </li>
+       </ul>
+     </div>
+     <span class="hello-msg">Здравствуйте, {{request.user}}!</span>
+   </nav>
+
+<br>
+
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="total-exs">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Всего проведено экспериментов</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{num_exs}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="total-files">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Всего загружено файлов</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{num_files}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="total-samples">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Всего создано выборок</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{num_samples}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<br>
+
+<div class="row">
+	<div class="col-md-12">
+		<h5> ВКФ-эксперименты:</h5>
+		<hr>
+		<div class="card card-body">
+            <a class="btn btn-primary  btn-sm btn-block" href="{% url 'vkfsys:induction' %}">Создать эксперимент</a>
+        
+			<table class="table table-sm">
+				<tr>
+                    <th>Создатель</th>
+					<th>Имя таблицы с кодировщиком</th>
+                    <th>Имя таблицы с обучающей выборкой</th>
+                    <th>Имя таблицы с гипотезами</th>
+                    <th>Количество гипотез</th>
+                    <th>Имя таблицы с тестовой выборкой</th>
+                    <th>Количество положительных примеров</th>
+                    <th>Количество негативных примеров</th>
+                    <th>Редактировать</th>
+                    <th>Удалить</th>
+				</tr>
+
+				{% for ex in list_of_exs %}
+					<tr>
+                        <td>{{ex.user}}</td>
+						<td>{{ex.table_enc}}</td>
+                        <td>{{ex.table_samp}}</td>
+                        <td>{{ex.table_hyps}}</td>
+                        <td>{{ex.num_hyps}}</td>
+                        <td>{{ex.table_test}}</td>
+                        <td>{{ex.num_pos}}</td>
+                        <td>{{ex.num_neg}}</td>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'update_ex' ex.id %}">Редактировать</a></td>
+
+						<td><a class="btn btn-sm btn-danger" href="{% url 'delete_ex' ex.id %}">Удалить</a></td>
+					</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-6">
+		<h5>Файлы</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="{% url 'encoder:choiceFileFor' %}">Загрузить файл</a>
+			<table class="table table-sm">
+				<tr>
+					<th>Загрузил</th>
+					<th>Название файла</th>
+					<th>Путь к файлу</th>
+					<th>Имя таблицы для кодировщика</th>
+                    <th>Имя таблицы для решеток</th>
+                    <th>Редактировать</th>
+					<th>Удалить</th>
+				</tr>
+				{% for file in list_of_files %}
+					<tr>
+                        <td>{{file.user}}</td>
+                        <td>{{file.file_name}}</td>
+                        <td>{{file.file_path}}</td>
+                        <td>{{file.file_tableEncoder}}</td>
+                        <td>{{file.file_tableOrderings}}</td>
+						<td><a class="btn btn-sm btn-info" href="#">Редактировать</a></td>
+
+						<td><a class="btn btn-sm btn-danger" href="#">Удалить</a></td>
+
+					</tr>
+				{% endfor %}
+
+		
+			</table>
+		</div>
+    </div>
+    <div class="col-sm-6">
+		<h5>Выборки</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="{% url 'encoder:create_table' %}">Создать выборку</a>
+			<table class="table table-sm">
+				<tr>
+					<th>Загрузил</th>
+					<th>Название файла</th>
+					<th>Путь к файлу</th>
+					<th>Целевое свойство</th>
+                    <th>Имя таблицы</th>
+                    <th>Имя таблицы-кодировщика</th>
+                    <th>Редактировать</th>
+					<th>Удалить</th>
+				</tr>
+				{% for sample in list_of_samples %}
+					<tr>
+                        <td>{{sample.user}}</td>
+                        <td>{{sample.fileSample_name}}</td>
+                        <td>{{sample.fileSample_path}}</td>
+                        <td>{{sample.fileSample_attr}}</td>
+                        <td>{{sample.fileSample_table}}</td>
+                        <td>{{sample.fileSample_encoder}}</td>
+						<td><a class="btn btn-sm btn-info" href="#">Редактировать</a></td>
+
+						<td><a class="btn btn-sm btn-danger" href="#">Удалить</a></td>
+
+					</tr>
+				{% endfor %}
+
+		
+			</table>
+		</div>
+	</div>
+
+
+</div>
+
+{% endblock %}

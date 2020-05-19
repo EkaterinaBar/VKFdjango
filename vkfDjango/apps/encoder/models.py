@@ -1,6 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class FileForEncoder(models.Model):
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)  # привязка к пользователю
     file_name = models.CharField('Название файла', max_length = 100)
     file_path = models.CharField('Путь к файлу', max_length = 200)
     file_type = models.CharField('Тип файла', max_length = 10) #xml или json
@@ -15,6 +17,7 @@ class FileForEncoder(models.Model):
         verbose_name_plural = 'Файлы для кодировщика'
 
 class SampleForVKF(models.Model):
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)  # привязка к пользователю
     fileSample_type = models.CharField('Тип файла', max_length = 100) #для обучающей или для тестовой выборки - обуч или тест
     fileSample_name = models.CharField('Название файла', max_length = 100)
     fileSample_path = models.CharField('Путь к файлу', max_length = 200)

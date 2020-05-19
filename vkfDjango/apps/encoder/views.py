@@ -7,9 +7,11 @@ from django.urls import reverse
 from pathlib import Path
 from .models import FileForEncoder, SampleForVKF
 from .db_settings import VKFConfig
+from django.contrib.auth.decorators import login_required
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__)) #получаю путь до приложения encoder
-# Create your views here.
+
+@login_required(login_url='login')
 def index(request):
     #return HttpResponse("hello")
     return render(request, 'encoder/main.html')
@@ -125,6 +127,7 @@ def create_table(request):
 def add_sample(request):
     try:
         name = request.FILES['sample_file'].name
+       
         file_path = BASE_DIR + '/files/'+name
         handle_uploaded_file(request.FILES['sample_file'], file_path) #сохраняю файл отдельно на сервере, чтобы знать путь к нему
         fileSample_type = request.POST['sample_type']
@@ -132,10 +135,11 @@ def add_sample(request):
         fileSample_table = request.POST['sample_table']
         fileSample_encoder = request.POST['sample_encoder']
         url = '/encoder/create_table'
+        print(name, ' ', fileSample_encoder, ' ', fileSample_attr)
     except Exception as e:
         print(e)
         raise Http404("Неправильный путь!")
-    if SampleForVKF.objects.filter(fileSample_name=name) and SampleForVKF.objects.filter(fileSample_encoder=fileSample_encoder) and SampleForVKF.objects.filter(fileSample_attr=fileSample_attr):
+    if SampleForVKF.objects.filter(fileSample_name=name, fileSample_encoder=fileSample_encoder, fileSample_attr=fileSample_attr):
         return render(request, 'encoder/modal.html', {'data': 'Таблица для файла с таким именем, кодировщиком и целевым свойством уже существует в базе. Просмотрите существующие таблицы.', 'urlForAction': url})
     try:
         vkfencoder.DataImport(file_path, fileSample_attr, fileSample_encoder, fileSample_table, VKFConfig.DB_NAME, VKFConfig.DB_HOST, VKFConfig.DB_USER, VKFConfig.DB_PSWD)

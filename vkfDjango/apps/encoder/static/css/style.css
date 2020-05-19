@@ -2,7 +2,7 @@ body,form {
     /* padding-left: 15px;*/
      padding: 10px;
  }
- table {
+ /* table {
     font-size: 14px;
     border-collapse: collapse;
     text-align: center;
@@ -25,4 +25,23 @@ body,form {
     }
     th:first-child, td:first-child {
     text-align: left;
+    } */
+
+    #total-exs{
+        background-color: #e1befb;
+    }
+
+
+    #total-files{
+        background-color: #baceff
+    }
+
+    #total-samples{
+        background-color: #ffbae1;
+    }
+
+    .hello-msg{
+    font-size: 18px;
+    color: #fff;
+    margin-right: 20px;
     }

@@ -18,6 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
   #  path('encoder/', include(('encoder.urls', 'encoder'), namespace='encoder')),
+    path('', include('accounts.urls')),
     path('vkfsys/', include('vkfsys.urls')),
     path('encoder/', include('encoder.urls')),
     path('admin/', admin.site.urls),

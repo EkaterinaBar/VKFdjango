@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} Главная {% endblock %}
+
+{% block content %}
+
+<form action = "{% url 'vkfsys:index' %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <button type="submit">Приложение vkfsys</button>
+</form>
+<form action = "{% url 'encoder:index' %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <button type="submit">Приложение encoder</button>
+</form>
+
+{% endblock %}
+

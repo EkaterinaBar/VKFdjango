@@ -1,6 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Experiment(models.Model):
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)  # привязка к пользователю
     table_enc = models.CharField('Таблица с кодировщиком', max_length = 100) #имя таблицы
     table_samp = models.CharField('Таблица с обучающей выборкой', max_length = 100)  #имя таблицы
     table_hyps = models.CharField('Таблица с гипотезами', max_length = 10)  #имя таблицы

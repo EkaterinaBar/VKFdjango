@@ -20,6 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(__file__) 
 sys.path.insert(0,os.path.join(PROJECT_ROOT, 'apps')) #для того, чтобы видел что мои приложения лежат в папке apps
 
+LOGIN_REDIRECT_URL =  '/'
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -35,6 +38,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts.apps.AccountsConfig',
     'vkfsys.apps.VkfsysConfig',
     'encoder.apps.EncoderConfig',
     'django.contrib.admin',
@@ -85,7 +89,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            'read_default_file': '/usr/src/web/projectsDjango/vkfDjango/my.cnf',
+            'read_default_file': '/home/ekaterina/ekaterina/diplom/djangoprojects/VKFdjango/my.cnf',
         },
     }
 }
