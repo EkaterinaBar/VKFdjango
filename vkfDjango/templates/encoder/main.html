@@ -3,6 +3,7 @@
 {% block title %} Главная {% endblock %}
 
 {% block content %}
+{%  include 'accounts/navbar.html' %}
 
 <form action = "{% url 'encoder:choiceFileFor' %}" enctype="multipart/form-data" method="post">
     {% csrf_token %}

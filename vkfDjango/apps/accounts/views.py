@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm
+from .forms import CreateUserForm, ExperimentForm, FileForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 from vkfsys.models import Experiment
 from encoder.models import FileForEncoder, SampleForVKF
-from .forms import ExperimentForm
 
 # Create your views here.
 
@@ -76,6 +75,26 @@ def index(request):
     return render(request, 'accounts/main.html', context)
 
 @login_required(login_url='login')
+def userPage(request):
+    list_of_exs = request.user.experiment_set.all()
+    list_of_files = request.user.fileforencoder_set.all()
+    list_of_samples = request.user.sampleforvkf_set.all()
+    num_exs = list_of_exs.count()
+    num_files = list_of_files.count()
+    num_samples = list_of_samples.count()
+
+    context = {
+        'list_of_exs': list_of_exs,
+        'list_of_files': list_of_files,
+        'list_of_samples': list_of_samples,
+        'num_exs':num_exs,
+        'num_files':num_files,
+        'num_samples':num_samples,
+    }
+
+    return render(request, 'accounts/user.html', context)
+
+@login_required(login_url='login')
 def update_ex(request, ex_id):
 
 	ex = Experiment.objects.get(id=ex_id)
@@ -99,3 +118,29 @@ def delete_ex(request, ex_id):
 
 	context = {'ex':ex}
 	return render(request, 'accounts/delete_ex.html', context)
+
+@login_required(login_url='login')
+def update_file(request, file_id):
+
+	f = FileForEncoder.objects.get(id=file_id)
+	form = FileForm(instance=f)
+
+	if request.method == 'POST':
+		form = FileForm(request.POST, instance=f)
+		if form.is_valid():
+			form.save()
+			return redirect('/')
+
+	context = {'form':form}
+	return render(request, 'accounts/update_file.html', context)
+
+@login_required(login_url='login')
+def delete_file(request, file_id):
+	f = FileForEncoder.objects.get(id=file_id)
+	if request.method == "POST":
+		f.delete()
+		return redirect('/')
+
+	context = {'file':f}
+	return render(request, 'accounts/delete_file.html', context)
+
