@@ -53,7 +53,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<h5> ВКФ-эксперименты:</h5>
+		<h5> ВКФ-эксперименты</h5>
 		<hr>
 		<div class="card card-body">
             <a class="btn btn-primary  btn-sm btn-block" href="{% url 'vkfsys:induction' %}">Создать эксперимент</a>
@@ -93,7 +93,7 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-6">
+	<div class="col-md-12">
 		<h5>Файлы</h5>
 		<hr>
 		<div class="card card-body">
@@ -126,8 +126,10 @@
 		
 			</table>
 		</div>
-    </div>
-    <div class="col-md-6">
+	</div>
+</div>
+<div class="row">
+    <div class="col-md-12">
 		<h5>Выборки</h5>
 		<hr>
 		<div class="card card-body">
@@ -151,9 +153,9 @@
                         <td>{{sample.fileSample_table}}</td>
                         <td>{{sample.fileSample_encoder}}</td>
 						<td>
-							<p><a class="btn btn-sm btn-info" href="#">Редактировать</a></p>
+							<p><a class="btn btn-sm btn-info" href="{% url 'update_sample' sample.id %}">Редактировать</a></p>
 							
-							<p><a class="btn btn-sm btn-danger" href="#">Удалить</a></p>
+							<p><a class="btn btn-sm btn-danger" href="{% url 'delete_sample' sample.id %}">Удалить</a></p>
 						</td>
 
 					</tr>
@@ -163,8 +165,6 @@
 			</table>
 		</div>
 	</div>
-
-
 </div>
 
 {% endblock %}

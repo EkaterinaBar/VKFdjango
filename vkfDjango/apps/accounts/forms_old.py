@@ -21,8 +21,3 @@ class FileForm(ModelForm):
 	class Meta:
 		model = FileForEncoder
 		fields = '__all__'
-
-class SampleForm(ModelForm):
-	class Meta:
-		model = SampleForVKF
-		fields = '__all__'
