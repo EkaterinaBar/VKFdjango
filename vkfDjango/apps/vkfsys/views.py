@@ -76,7 +76,7 @@ def create_table(request):
         return render(request, 'vkfsys/modal.html', {'data': 'Ошибка на этапе vkf.save_hypotheses: '+ str(e), 'urlForAction': url})
 
     try:
-        ex = Experiment(table_enc = table_enc, table_samp = table_samp, table_hyps = table_hyps, num_hyps = num_hyps, table_test = '', num_pos = 0, num_neg = 0)
+        ex = Experiment(user=request.user, table_enc = table_enc, table_samp = table_samp, table_hyps = table_hyps, num_hyps = num_hyps, table_test = '', num_pos = 0, num_neg = 0)
         ex.save()
     except Exception as e:
         return render(request, 'vkfsys/modal.html', {'data': 'Ошибка на этапе записи информации об эксперименте в базу: '+ str(e), 'urlForAction': url})
@@ -93,7 +93,7 @@ def show_table(request, ex_id):
         dict_of_hyps = {}
         global ind, enc
         for i in range(ex.num_hyps):
-            list_of_attr_one_hyp =  ind.show_hypothesis(enc, i) #i - номер гипотезы.
+            list_of_attr_one_hyp =  ind.show_hypothesis(enc, i)  # i - номер гипотезы.
             dict_of_hyps[i] = list_of_attr_one_hyp
     except Exception as e:
         return render(request, 'vkfsys/modal.html', {'data': 'Ошибка на этапе создания списка гипотез с признаками: '+ str(e), 'urlForAction': url})

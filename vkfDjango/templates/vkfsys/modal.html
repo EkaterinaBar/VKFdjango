@@ -6,6 +6,7 @@
 
 <script>
     function funonload() {
+        $('#myModal').modal('show')
         what_url = document.getElementById('have_url');
         back = document.getElementById('back');
         stroka_url = what_url.innerHTML
@@ -13,20 +14,21 @@
     };
 </script>
 
-<div id="openModal" class="modalDialog">
-
-        <div>
-    
-            <a id ='back' href="#" onclick="history.back()" title="Закрыть" class="close">X</a>
-    
-            <h2>Сообщение</h2>
-    
-            <p>{{data}}</p>
-    
+<div id = 'have_url' hidden = 'true' >{{urlForAction}}</div>
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalCenterTitle" >
+    <div class="modal-dialog modal-dialog-centered" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Сообщение</h5>
+          <a id ='back' href="#" onclick="history.back()" class="close" data-dismiss="modal" aria-label="Close"></a>
+            <span>&times;</span>
+          </button>
         </div>
-        <div id = 'have_url' hidden = 'true' >{{urlForAction}}</div>
-    
-</div>
-    
+        <div class="modal-body">
+            {{data}}
+        </div>
+      </div>
+    </div>
+  </div>
 
 {% endblock %}

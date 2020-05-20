@@ -1,29 +1,78 @@
 {% extends 'base.html' %}
-
+<style>
+    
+</style>
 {% block title %} Таблица {{table_name}} {% endblock %}
+
+
 
 {% block content %}
 
-<form action="{% url 'vkfsys:ct_return' ex.id %}" enctype="multipart/form-data" method="post">
-    {% csrf_token %}
-    <button type="submit">Назад</button>
-</form> 
-    <ol>
-        {% if dict_of_hyps %}
-            {% for key, value in dict_of_hyps.items %}
-            <li>
-                <div>
-                    {% if value %}
-                        {% for s in value %}
-                            {{s}}
-                        {% endfor %}
-                    {% endif %}
-                </div>
-            </li>
-            {% endfor %}         
-        {% else %}
-             Гипотез нет!
-        {% endif %}
-        </ol>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("myBtn").style.display = "block";
+        } else {
+            document.getElementById("myBtn").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    } 
+</script>
+<nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'user-page' %}">Мой профиль<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'vkfsys:ct_return' ex.id %}">Назад</a>
+          </li>
+      </ul>
+    </div>
+    <span class="hello-msg">Здравствуйте, {{request.user}}!</span>
+  </nav>
+<br>
+<div class="container-fluid">
+    <button onclick="topFunction()" id="myBtn" title="Go to top" >Вверх</button> 
+    <table class="table table-hover table-bordered">
+        <tbody>
+            {% if dict_of_hyps %}
+            {% with 0 as num %}  
+                {% for key, value in dict_of_hyps.items %}
+                <tr>
+                    
+                    <th scope="row">{{ forloop.counter|add:num }}</th>
+                        {% if value %}
+                            {% for s in value %}
+                            <td>
+                                <b> {{s.0}}:</b><br>
+                                {{s.1}}
+                            </td>
+                            {% endfor %}
+                        {% endif %}
+                </tr>  
+                {% endfor %}
+            {% endwith %}
+            {% else %}
+                Гипотез нет!
+            {% endif %}
+        </tbody>
+    </table>
+</div>
 
 {% endblock %}

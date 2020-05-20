@@ -3,15 +3,31 @@
 {% block title %} Результаты {% endblock %}
 
 {% block content %}
+{%  include 'accounts/navbar.html' %}
 
-<h4>Результаты работы ВКФ-системы:</h4>
-<p>Количество положительных примеров: {{positive}}</p>
-<p>Количество отрицательных примеров: {{negative}}</p>
-<form action = "{% url 'vkfsys:index' %}" enctype="multipart/form-data" method="post">
-    {% csrf_token %}
-    <button type="submit">На главную</button>
-</form>
+<br>
+<div class="container-fluid">
+    <div class="d-flex justify-content-center">
+            <div class="card text-center">
+                <div class="card-header">
+                    Результаты работы ВКФ-системы
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-action">Количество положительных примеров: <b>{{positive}}</b></li>
+                        <li class="list-group-item list-group-item-action">Количество отрицательных примеров: <b>{{negative}}</b></li>
+                      </ul>
 
+                </div>
+                <div class="card-footer text-muted">
+                </div>
+            </div>
+        
+    </div>
+
+</div>
 
 
 {% endblock %}

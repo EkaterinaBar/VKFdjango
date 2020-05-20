@@ -3,6 +3,7 @@
 {% block title %} Индукция {% endblock %}
 
 {% block content %}
+{%  include 'accounts/navbar.html' %}
 <script>
     let samps = document.getElementsByName('table_samp');
     let encs = document.getElementsByName('table_enc');
@@ -33,49 +34,80 @@
                      
     }
 </script>
-
-<form action = "{% url 'vkfsys:create_table' %}" enctype="multipart/form-data" method="post">
-    {% csrf_token %}
-    <h4>Выберите таблицу с кодировщиком и обучающую выборку:</h4>
-    <ol>
-    {% if dict_of_filesFor %}
-        {% for key, value in dict_of_filesFor.items %}
-        <li>
-            <div>
-                <label><p>Кодировщик от '{{key.file_name}}': 
-                    <input type="radio" onclick ="clear1();" name="table_enc" value={{key.file_tableEncoder}}> {{key.file_tableEncoder}}  
-                </p></label>
-                {% if value %}
-                    {% for s in value %}
-                    <br>
-                        <span>Обучающая выборка из файла '{{s.fileSample_name}}' с целевым свойством '{{s.fileSample_attr}}':  
-                            <input type="radio" name="table_samp" value={{s.fileSample_table}}>  {{s.fileSample_table}}  
-                        </span>
-                    {% endfor %}
-                {% else %}
-                    <p>Обучающих выборок с этим кодировщиком нет. Создайте в приложении encoder.</p>
-                {% endif %}
+<br>
+<div class="container-fluid">
+    <div class="d-flex justify-content-center">
+        <form action = "{% url 'vkfsys:create_table' %}" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+        <div class="card text-center">
+            <div class="card-header">
+            Индукция
             </div>
-        </li>
-        {% endfor %}         
-    {% else %}
-        Создайте сначала таблицу для кодировщика в приложении encoder!
-    {% endif %}
-    </ol>
-    <h4>Введите имя таблицы с гипотезами:</h4>
-    <input type="text" name="table_hyps" > 
-    <h4>Введите количество гипотез:</h4>
-    <input type="number" name="num_hyps" > 
-    <h4>Введите количество потоков:</h4>
-    <input type="number" name="num_thr" >
-    <br> <br> 
-    <button type="submit">ОК</button>
-</form>
-<form action = "{% url 'vkfsys:index' %}" enctype="multipart/form-data" method="post">
-    {% csrf_token %}
-    <button type="submit">На главную</button>
-</form>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <p class="card-text">
+                    Выберите таблицу с кодировщиком и обучающую выборку
+                </p>
+                {% if dict_of_filesFor %}
+                    <ul class="list-group">
+                        {% for key, value in dict_of_filesFor.items %}
+                        <li class="list-group-item list-group-flush ">
+                            <div>
+                            <p style="text-align: left; padding-left: 10px;">
+                                <input class="form-check-input" type="radio" onclick ="clear1();"name="table_enc"  value="{{key.file_tableEncoder}}">
+                                <label class="form-check-label">
+                                    {{key.file_tableEncoder}} 
+                                </label>
+                            <br>
+                            <small>Кодировщик от '{{key.file_name}}'</small>
+                            </p>
+                            {% if value %}
+                            <ul style="text-align: left; padding-left: 20px;" class="list-group">
+                                {% for s in value %}
+                                <li class="list-group-item list-group-item-light">
+                                    <span >  
+                                        <input class="form-check-input" type="radio" name="table_samp" value={{s.fileSample_table}}>  
+                                        <label class="form-check-label">
+                                            {{s.fileSample_table}} 
+                                        </label>
+                                        <br>
+                                        <small>Обучающая выборка из файла '{{s.fileSample_name}}' с целевым свойством '{{s.fileSample_attr}}'</small>
+                                    </span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% else %}
+                                <p>Обучающих выборок с этим кодировщиком нет. Создайте в приложении encoder.</p>
+                            {% endif %}
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>         
+                {% else %}
+                <p class="card-text">
+                    Создайте сначала таблицу для кодировщика в приложении encoder!
+                </p>
+                {% endif %}
+                 <br>
+                <div class="form-group">
+                <input class="form-control " name="table_hyps" type="text" placeholder="Имя таблицы с гипотезами">
+                </div>
+                <div class="form-group">
+                <input class="form-control " name="num_hyps" type="number" placeholder="Количество гипотез">
+                </div>
+                <div class="form-group">
+                <input class="form-control " name="num_thr" type="number" placeholder="Количество потоков">
+                </div>
+                <button class="btn btn-light" type="submit">ОК
+                </button>
+               
+            </div>
+            <div class="card-footer text-muted">
+            </div>
+        </div>
+        </form>
+    </div>
 
-
+</div>
 
 {% endblock %}

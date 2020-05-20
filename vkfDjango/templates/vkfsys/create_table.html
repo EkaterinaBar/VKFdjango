@@ -3,20 +3,38 @@
 {% block title %} Таблица {{ex.table_hyps}} {% endblock %}
 
 {% block content %}
+{%  include 'accounts/navbar.html' %}
 
-<h4>{{data}}</h4>
+<br>
+<div class="container-fluid">
+    <div class="d-flex justify-content-center">
+        
+        <div class="card text-center">
+            <div class="card-header">
+                {{data}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <form action = "{% url 'vkfsys:show_table' ex.id  %}" enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-light btn-block" type="submit">Посмотреть таблицу '{{ex.table_hyps}}'</button>
+                </form>
+                <form action = "{% url 'vkfsys:for_add_hyps' ex.id   %}" enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-light btn-block" type="submit">Добавить гипотезы</button>
+                </form>
+               
+                
+            </div>
+            <div class="card-footer text-muted">
+                <form action = "{% url 'vkfsys:choice_test' ex.id %}" enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-secondary" type="submit">Далее</button>
+                </form>
+            </div>
+        </div>
+        
+    </div>
 
-<form action = "{% url 'vkfsys:show_table' ex.id %}" enctype="multipart/form-data" method="post">
-    {% csrf_token %}
-    <button type="submit">Посмотреть таблицу '{{ex.table_hyps}}'</button>
-</form>
-<form action = "{% url 'vkfsys:for_add_hyps' ex.id %}" enctype="multipart/form-data" method="post">
-    {% csrf_token %}
-    <button type="submit">Добавить гипотезы</button>
-</form>
-<form action = "{% url 'vkfsys:choice_test' ex.id %}" enctype="multipart/form-data" method="post">
-    {% csrf_token %}
-    <button type="submit">Далее</button>
-</form>
-
+</div>
 {% endblock %}

@@ -1,0 +1,24 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<br>
+<div class="row">
+	<div class="col-md-6">
+		<div class="card card-body">
+
+
+			<p>Точно хотите удалить "{{sample}}"?</p>
+
+			<form action="{% url 'delete_sample' sample.id  %}" method="POST">
+				
+				{% csrf_token %}
+				<a class="btn btn-warning" href="{% url 'index' %}">Отмена</a>
+
+				<input class="btn btn-danger" type="submit" name="Confirm">
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

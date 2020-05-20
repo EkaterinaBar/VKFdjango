@@ -30,14 +30,14 @@ def add_fileFOR(request):
         print(e)
         raise Http404("Неправильный путь!")
     if FileForEncoder.objects.filter(file_name=name):
-        return render(request, 'encoder/modal.html', {'data': 'Файл с таким именем уже существует в базе. Просмотрите последние файлы.', 'urlForAction': url})
+        return render(request, 'vkfsys/modal.html', {'data': 'Файл с таким именем уже существует в базе. Просмотрите последние файлы.', 'urlForAction': url})
     try:
-        f = FileForEncoder(file_name = name, file_path = file_path, file_type = file_type)
+        f = FileForEncoder(file_name=name, file_path=file_path, file_type=file_type, user=request.user)
         f.save()
     except Exception as e:
         print(e)
-        return render(request, 'encoder/modal.html', {'data': 'Файл не сохранился в базе.','urlForAction': url}) 
-    return render(request, 'encoder/modal.html', {'data': 'Файл сохранён в базе','urlForAction': url})
+        return render(request, 'vkfsys/modal.html', {'data': 'Файл не сохранился в базе.','urlForAction': url}) 
+    return render(request, 'vkfsys/modal.html', {'data': 'Файл сохранён в базе','urlForAction': url})
 
 def handle_uploaded_file(f, path):
     with open(path, 'wb+') as destination:
@@ -79,7 +79,7 @@ def execute(request, fileForEncoder_id):
     except Exception as e:
         print(e)
         raise Http404("Файл не найден!")
-    return render(request, 'encoder/modal.html', {'data': 'Таблицы ' +  request.POST['tablename_encoder'] + ' и ' + request.POST['tablename_orderings'] +' сформированы.','fileForEncoder_id': fileForEncoder_id, 'urlForAction': url})
+    return render(request, 'vkfsys/modal.html', {'data': 'Таблицы ' +  request.POST['tablename_encoder'] + ' и ' + request.POST['tablename_orderings'] +' сформированы.','fileForEncoder_id': fileForEncoder_id, 'urlForAction': url})
 
 def show_table(request,fileForEncoder_id,table_name, table_type):
     try:
@@ -118,7 +118,7 @@ def create_file(request,fileForEncoder_id, file_type):
     except Exception as e:
         print(e)
         raise Http404("Файл не найден!")
-    return render(request, 'encoder/modal.html', {'data': 'Файл сформирован. Его можно найти в: ' + pathFor, 'urlForAction': url})
+    return render(request, 'vkfsys/modal.html', {'data': 'Файл сформирован. Его можно найти в: ' + pathFor, 'urlForAction': url})
 
 def create_table(request):
     filesFor = FileForEncoder.objects.order_by('file_name')
@@ -140,15 +140,15 @@ def add_sample(request):
         print(e)
         raise Http404("Неправильный путь!")
     if SampleForVKF.objects.filter(fileSample_name=name, fileSample_encoder=fileSample_encoder, fileSample_attr=fileSample_attr):
-        return render(request, 'encoder/modal.html', {'data': 'Таблица для файла с таким именем, кодировщиком и целевым свойством уже существует в базе. Просмотрите существующие таблицы.', 'urlForAction': url})
+        return render(request, 'vkfsys/modal.html', {'data': 'Таблица для файла с таким именем, кодировщиком и целевым свойством уже существует в базе. Просмотрите существующие таблицы.', 'urlForAction': url})
     try:
         vkfencoder.DataImport(file_path, fileSample_attr, fileSample_encoder, fileSample_table, VKFConfig.DB_NAME, VKFConfig.DB_HOST, VKFConfig.DB_USER, VKFConfig.DB_PSWD)
-        f = SampleForVKF(fileSample_type = fileSample_type, fileSample_name = name, fileSample_path = file_path, fileSample_attr = fileSample_attr, fileSample_table = fileSample_table, fileSample_encoder = fileSample_encoder)
+        f = SampleForVKF(user=request.user, fileSample_type = fileSample_type, fileSample_name = name, fileSample_path = file_path, fileSample_attr = fileSample_attr, fileSample_table = fileSample_table, fileSample_encoder = fileSample_encoder)
         f.save()
     except Exception as e:
         print(e)
-        return render(request, 'encoder/modal.html', {'data': 'Выборка не сохранилась в базе.', 'urlForAction': url})
-    return render(request, 'encoder/modal.html', {'data': 'Выборка сохранилась в базе', 'urlForAction': url})
+        return render(request, 'vkfsys/modal.html', {'data': 'Выборка не сохранилась в базе.', 'urlForAction': url})
+    return render(request, 'vkfsys/modal.html', {'data': 'Выборка сохранилась в базе', 'urlForAction': url})
 
 
 def list_samples(request):

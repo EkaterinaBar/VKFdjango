@@ -4,33 +4,53 @@
 
 {% block content %}
 
-<form action = "{% url 'vkfsys:prediction' ex_id %}" enctype="multipart/form-data" method="post">
-    {% csrf_token %}
-    <h4>Выберите тестовую выборку:</h4>
-    <ol>
-    {% if test_samples %}
-        {% for t in test_samples %}
-        <li>
-            <div>
-                 <span>
-                    <input type="radio" name="table_test" value={{t.fileSample_table}}>  {{t.fileSample_table}} -  
-                     Тестовая выборка из файла '{{t.fileSample_name}}' с целевым свойством '{{t.fileSample_attr}}'  
-                        
-                </span>
+{%  include 'accounts/navbar.html' %}
+
+<br>
+<div class="container-fluid">
+    <div class="d-flex justify-content-center">
+        <form action = "{% url 'vkfsys:prediction' ex_id %}" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+            <div class="card text-center">
+                <div class="card-header">
+                    Выберите тестовую выборку
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    {% if test_samples %}
+                    <ul style="text-align: left; padding-left: 20px;" class="list-group list-group-flush">
+                        {% for t in test_samples %}
+                        <li class="list-group-item  ">
+                            <span >  
+                                <input class="form-check-input" type="radio" name="table_test" value={{t.fileSample_table}}>  
+                                <label class="form-check-label">
+                                    {{t.fileSample_table}}
+                                </label>
+                                <br>
+                                <small>Тестовая выборка из файла '{{t.fileSample_name}}' с целевым свойством '{{t.fileSample_attr}}'</small>
+                            </span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <p class="card-text">
+                        Создайте сначала тестовую выборку в приложении encoder!
+                    </p>
+                    {% endif %}
+                
+                    
+                </div>
+                <div class="card-footer text-muted">
+                    <a class="btn btn-secondary" href="{% url 'vkfsys:ct_return' ex_id %}">Назад</a>
+                    <button class="btn btn-secondary" type="submit">ОК
+                    </button>
+                </div>
             </div>
-        </li>
-        {% endfor %}         
-    {% else %}
-        Создайте сначала тестовую выборку в приложении encoder!
-    {% endif %}
-    </ol>
-    <br> <br> 
-    <button type="submit">ОК</button>
-</form>
-<form action = "{% url 'vkfsys:ct_return' ex_id %}" enctype="multipart/form-data" method="post">
-    {% csrf_token %}
-    <button type="submit">Назад</button>
-</form>
+        </form>
+    </div>
+
+</div>
+
 
 
 
