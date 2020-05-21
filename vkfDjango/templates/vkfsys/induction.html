@@ -79,8 +79,9 @@
                             <br>
                             <small>Кодировщик от '{{key.file_name}}'</small>
                             </p>
-                            {% if value %}
+                            
                             <ul style="text-align: left; padding-left: 20px;" class="list-group" hidden='true' name="ul_of_samps">
+                                {% if value %}
                                 {% for s in value %}
                                 <li class="list-group-item list-group-item-light">
                                     <span >  
@@ -93,10 +94,13 @@
                                     </span>
                                 </li>
                                 {% endfor %}
-                            </ul>
-                            {% else %}
+                                {% else %}
+                                <li class="list-group-item list-group-item-light">
                                 <p>Обучающих выборок с этим кодировщиком нет. Создайте в приложении encoder.</p>
-                            {% endif %}
+                                </li>
+                                {% endif %}
+                            </ul>
+                            
                             </div>
                         </li>
                         {% endif %}
