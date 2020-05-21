@@ -7,16 +7,33 @@
 <script>
     let samps = document.getElementsByName('table_samp');
     let encs = document.getElementsByName('table_enc');
-   
-    function clear1() { //функция которая проверяет, чтобы можно было нажать только нужные радио кнопки у своего encoder
+    let ul_of_sampls = document.getElementsByName('ul_of_samps');
+
+    function clear1() {  // функция которая проверяет, чтобы можно было нажать только нужные радио кнопки у своего encoder
         let our_elem = event.currentTarget;
         our_div = our_elem.closest('div');
+        our_ul_of_sampls = our_div.querySelectorAll('ul');
+        let sign = false;
+        for(let i=0; i<ul_of_sampls.length; i++){
+            for(let j=0; j<our_ul_of_sampls.length; j++){
+                if(ul_of_sampls[i]==our_ul_of_sampls[j]){
+                    ul_of_sampls[i].hidden=false;
+                    sign = true;
+                }
+            }
+            if (!sign){
+                ul_of_sampls[i].hidden=true;
+            }
+            sign = false;
+        }
+            
+
         our_input_for_samps = our_div.querySelectorAll('span > input');
         for(let i=0; i<samps.length; i++)
             if (samps[i].checked) {
                 samps[i].checked = false;
             }
-        let sign = false;
+        sign = false;
         for(let i=0; i<samps.length; i++){
             for(let j=0; j<our_input_for_samps.length; j++){
                 if(samps[i] == our_input_for_samps[j]){
@@ -40,8 +57,8 @@
         <form action = "{% url 'vkfsys:create_table' %}" enctype="multipart/form-data" method="post">
             {% csrf_token %}
         <div class="card text-center">
-            <div class="card-header">
-            Индукция
+            <div class="card-header" id="card-header">
+            ИНДУКЦИЯ
             </div>
             <div class="card-body">
                 <h5 class="card-title"></h5>
@@ -51,6 +68,7 @@
                 {% if dict_of_filesFor %}
                     <ul class="list-group">
                         {% for key, value in dict_of_filesFor.items %}
+                        {% if key.file_tableEncoder %}
                         <li class="list-group-item list-group-flush ">
                             <div>
                             <p style="text-align: left; padding-left: 10px;">
@@ -62,16 +80,16 @@
                             <small>Кодировщик от '{{key.file_name}}'</small>
                             </p>
                             {% if value %}
-                            <ul style="text-align: left; padding-left: 20px;" class="list-group">
+                            <ul style="text-align: left; padding-left: 20px;" class="list-group" hidden='true' name="ul_of_samps">
                                 {% for s in value %}
                                 <li class="list-group-item list-group-item-light">
                                     <span >  
-                                        <input class="form-check-input" type="radio" name="table_samp" value={{s.fileSample_table}}>  
-                                        <label class="form-check-label">
-                                            {{s.fileSample_table}} 
-                                        </label>
-                                        <br>
-                                        <small>Обучающая выборка из файла '{{s.fileSample_name}}' с целевым свойством '{{s.fileSample_attr}}'</small>
+                                            <input class="form-check-input" type="radio" name="table_samp" value={{s.fileSample_table}} >  
+                                            <label class="form-check-label">
+                                                {{s.fileSample_table}} 
+                                            </label>
+                                            <br>
+                                            <small>Обучающая выборка из файла '{{s.fileSample_name}}' с целевым свойством '{{s.fileSample_attr}}'</small>
                                     </span>
                                 </li>
                                 {% endfor %}
@@ -81,6 +99,7 @@
                             {% endif %}
                             </div>
                         </li>
+                        {% endif %}
                         {% endfor %}
                     </ul>         
                 {% else %}
@@ -98,11 +117,12 @@
                 <div class="form-group">
                 <input class="form-control " name="num_thr" type="number" placeholder="Количество потоков">
                 </div>
-                <button class="btn btn-light" type="submit">ОК
-                </button>
+                
                
             </div>
-            <div class="card-footer text-muted">
+            <div class="card-footer text-muted" id="card-footer">
+                <button class="btn btn-outline-light" type="submit"><b>OK</b>
+                </button>
             </div>
         </div>
         </form>

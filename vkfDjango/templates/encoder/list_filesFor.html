@@ -3,27 +3,62 @@
 {% block title %} Последние файлы {% endblock %}
 
 {% block content %}
+{%  include 'accounts/navbar.html' %}
 
-    {% if filesFor %}
+<br>
+<div class="container-fluid">
+    <div class="d-flex justify-content-center">
+            <div class="card text-center">
+                <div class="card-header" id="card-header">
+                     ЗАГРУЖЕННЫЕ ФАЙЛЫ
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    {% if filesFor %}
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col">Имя файла</th>
+                            <th scope="col">Таблицы в базе
+                            </th>
+                            <th scope="col"> </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for f in filesFor %}
+                              <tr>
+                                <td>{{f.file_name}}</td>
+                                {% if f.file_tableEncoder != "" %}
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input position-static" type="checkbox" checked="true" disabled="true" value="option1" aria-label="...">
+                                      </div>
+                                </td>
+                                {% else %}
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input position-static" type="checkbox" disabled="true" value="option1" aria-label="...">
+                                          </div>
+                                    </td>
+                                {% endif %}
+                                <td>
+                                    <a class="btn btn-light" href="{% url 'encoder:fileFrom' f.id %}">Посмотреть</a>
+                                </td>
+                               
+                              </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                        Пока файлов нет
+                    {% endif %}
+                </div>
+                <div class="card-footer text-muted" id="card-footer">
+                    <a class="btn btn-outline-light" href="{% url 'encoder:choiceFileFor' %}">Назад</a>
+                </div>
+            </div>  
+    </div>
 
-        {% for f in filesFor %}
-        
-         
-            <form action = "{% url 'encoder:fileFrom' f.id %}" enctype="multipart/form-data" method="post">
-                {% csrf_token %}
-                <p>{{f.file_name}}
-                <button type="submit">Выбрать</button></p>
-            </form>
-        {% endfor %}
-
-    {% else %}
-        Пока файлов нет
-    {% endif %}
-
-    <form action = "{% url 'encoder:choiceFileFor' %}" enctype="multipart/form-data" method="post">
-        {% csrf_token %}
-        <button type="submit">Назад</button>
-    </form>
-    
+</div>    
 
 {% endblock %}

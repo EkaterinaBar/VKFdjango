@@ -4,21 +4,61 @@
 
 {% block content %}
 
-    <form action = "{% url 'encoder:add_fileFOR' %}" enctype="multipart/form-data" method="post">
-        {% csrf_token %}
-        <p>Выберите файл для кодировщика json/xml:</p>
-        <p><input type="file" name="fileFOR" multiple accept="text/xml, text/json"></p>
-        <button type="submit">Отправить</button>
-    </form>
-    <br>
-    <br>
-    <form action = "{% url 'encoder:list_filesFor' %}" enctype="multipart/form-data" method="post">
-        {% csrf_token %}
-        <button type="submit">Посмотреть последние файлы</button>
-    </form>
-    <form action = "{% url 'encoder:index' %}" enctype="multipart/form-data" method="post">
-        {% csrf_token %}
-        <button type="submit">На главную</button>
-    </form>
+<script>
+    function what_file(){
+        file_name = event.target.files[0].name;
+        let label = document.getElementById("file_label");
+        label.innerHTML = file_name;
+    }
+</script>
+<nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'user-page' %}">Мой профиль<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'encoder:list_filesFor' %}">Посмотреть загруженные файлы</a>
+          </li>
+      </ul>
+    </div>
+    <span class="hello-msg">Здравствуйте, {{request.user}}!</span>
+  </nav>
+
+<br>
+<div class="container-fluid">
+    <div class="d-flex justify-content-center">
+        <form action = "{% url 'encoder:add_fileFOR' %}" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <div class="card text-center">
+                <div class="card-header" id="card-header">
+                    ВЫБЕРИТЕ ФАЙЛ ДЛЯ КОДИРОВЩИКА
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" onchange="what_file();" name="fileFOR">
+                        <label class="custom-file-label" id="file_label" data-browse="Обзор">Выбрать файл</label>
+                      </div>
+                </div>
+                <div class="card-footer text-muted" id="card-footer">
+                    
+                    <button class="btn btn-outline-light" type="submit">Отправить файл
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
 
 {% endblock %}

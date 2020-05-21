@@ -6,11 +6,12 @@
 
 <script>
     function funonload() {
-        $('#myModal').modal('show')
+        
         what_url = document.getElementById('have_url');
         back = document.getElementById('back');
-        stroka_url = what_url.innerHTML
+        stroka_url = what_url.innerHTML;
         back.setAttribute('href', stroka_url);
+        $('#myModal').modal('show')
     };
 </script>
 
@@ -20,7 +21,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">Сообщение</h5>
-          <a id ='back' href="#" onclick="history.back()" class="close" data-dismiss="modal" aria-label="Close"></a>
+          <a id ='back' href="#"  class="close"  aria-label="Close"></a>
             <span>&times;</span>
           </button>
         </div>
@@ -32,3 +33,5 @@
   </div>
 
 {% endblock %}
+
+  

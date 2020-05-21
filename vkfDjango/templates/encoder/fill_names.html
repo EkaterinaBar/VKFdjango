@@ -4,15 +4,41 @@
 
 {% block content %}
 
-    <form action = "{% url 'encoder:execute' fileFor.id %}" enctype="multipart/form-data" method="post">
-        {% csrf_token %}
-        <p>Введите имя для таблицы с кодировщиком:</p>
-        <p><input type="text" name="tablename_encoder"></p>
-        <p>Предыдущее имя для таблицы с кодировщиком: {{fileFor.file_tableEncoder}}</p>
-        <p>Введите имя для таблицы с решётками:</p>
-        <p><input type="text" name="tablename_orderings"></p>
-        <p>Предыдущее имя для таблицы с решётками: {{fileFor.file_tableOrderings}}</p>
-        <button type="submit">OK</button>
-    </form>
+{%  include 'accounts/navbar.html' %}
+
+<br>
+<div class="container-fluid">
+    <div class="d-flex justify-content-center">
+        <form action = "{% url 'encoder:execute' fileFor.id  %}" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <div class="card text-center">
+                <div class="card-header" id="card-header">
+                     СФОРМИРОВАТЬ ТАБЛИЦЫ
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <div class="form-group">
+                        <input class="form-control " name="tablename_encoder" type="text" placeholder="Имя таблицы-кодировщика">
+                        {% if fileFor.file_tableEncoder %}
+                            <small>Предыдущее имя таблицы-кодировщика: <b>{{fileFor.file_tableEncoder}}</b></small>
+                        {% endif %}
+                        </div>
+                        <div class="form-group">
+                        <input class="form-control " name="tablename_orderings" type="text" placeholder="Имя таблицы с отношениями">
+                        {% if fileFor.file_tableOrderings %}
+                            <small>Предыдущее имя таблицы с отношениями: <b>{{fileFor.file_tableOrderings}}</b></small>
+                        {% endif %}
+                        </div>
+                </div>
+                <div class="card-footer text-muted" id="card-footer">
+                    <a class="btn btn-outline-light" href="{% url 'encoder:fileFrom' fileFor.id  %}">Отмена</a>
+                    <button class="btn btn-outline-light" type="submit">ОК
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
 
 {% endblock %}

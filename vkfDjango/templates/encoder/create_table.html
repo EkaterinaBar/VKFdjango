@@ -4,37 +4,103 @@
 
 {% block content %}
 
-    <form action = "{% url 'encoder:add_sample' %}" enctype="multipart/form-data" method="post">
-        {% csrf_token %}
-        <p>Выберите файл для выборки:</p>
-        <p><input type="file" name="sample_file"></p>
-        <p><input type="radio" name="sample_type" value="train"> Обучающая 
-            <input type="radio" name="sample_type" value="test"> Тестовая </p>
-        <p>Целевое свойство: <input type="text" name="sample_attr"></p>
-        <p>Имя таблицы: <input type="text" name="sample_table"></p>
-        <p>Выберите кодировщик:</p>
-        {% if filesFor %}
-            {% for f in filesFor %}
-                <p>Кодировщик от {{f.file_name}}: 
-                    <input type="radio" name="sample_encoder" value={{f.file_tableEncoder}}> {{f.file_tableEncoder}}  
-                </p>
-                
-            {% endfor %}
-        {% else %}
-            Создайте сначала таблицу для кодировщика!
-        {% endif %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <button type="submit">Загрузить</button>
-    </form>
-    <br>
-    <br>
-    <form action = "{% url 'encoder:list_samples' %}" enctype="multipart/form-data" method="post">
-        {% csrf_token %}
-        <button type="submit">Посмотреть существующие выборки</button>
-    </form>
-    <form action = "{% url 'encoder:index' %}" enctype="multipart/form-data" method="post">
-        {% csrf_token %}
-        <button type="submit">На главную</button>
-    </form>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'user-page' %}">Мой профиль<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'encoder:list_samples' %}">Существующие выборки</a>
+          </li>
+      </ul>
+    </div>
+    <span class="hello-msg">Здравствуйте, {{request.user}}!</span>
+  </nav>
+<script>
+    function what_file(){
+        file_name = event.target.files[0].name;
+        let label = document.getElementById("file_label");
+        label.innerHTML = file_name;
+    }
+</script>
+<br>
+<div class="container-fluid">
+    <div class="d-flex justify-content-center">
+        <form action = "{% url 'encoder:add_sample' %}" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+        <div class="card text-center">
+            <div class="card-header" id="card-header">
+            СОЗДАНИЕ ВЫБОРКИ
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" onchange="what_file();" name="sample_file">
+                    <label class="custom-file-label" id="file_label" data-browse="Обзор">Выбрать файл для выборки</label>
+                    <small>csv</small>
+                </div>
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="sample_type" value="train"> 
+                <label class="form-check-label">
+                    Обучающая 
+                </label>
+                </div>
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="sample_type" value="test"> 
+                <label class="form-check-label">
+                    Тестовая 
+                </label>
+                </div>
+                <div class="form-group">
+                    <input class="form-control " name="sample_attr" type="text" placeholder="Целевое свойство">
+                </div>
+                <div class="form-group">
+                    <input class="form-control " name="sample_table" type="text" placeholder="Имя таблицы">
+                </div>
+                <p class="card-text">
+                    Выберите кодировщик
+                </p>
+                {% if filesFor %}
+                <ul class="list-group">
+                    {% for f in filesFor %}
+                    {% if f.file_tableEncoder != "" %}
+                    <li class="list-group-item list-group-flush ">
+                        <p style="text-align: left; padding-left: 10px;">
+                            <input class="form-check-input" type="radio" onclick ="clear1();"name="sample_encoder"  value="{{f.file_tableEncoder}}">
+                            <label class="form-check-label">
+                                {{f.file_tableEncoder}}
+                            </label>
+                        <br>
+                        <small>Кодировщик от '{{f.file_name}}'</small>
+                        </p>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p class="card-text">
+                    Создайте сначала таблицу для кодировщика!
+                </p>
+                {% endif %}
+               
+            </div>
+            <div class="card-footer text-muted" id="card-footer">
+                <button class="btn btn-outline-light" type="submit"><b>Загрузить</b>
+                </button>
+            </div>
+        </div>
+        </form>
+    </div>
+
+</div>
 
 {% endblock %}

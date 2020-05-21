@@ -92,6 +92,7 @@
 		</div>
 	</div>
 </div>
+<br>
 <div class="row">
 	<div class="col-md-12">
 		<h5>Файлы</h5>
@@ -105,7 +106,8 @@
 					<th>Путь к файлу</th>
 					<th>Имя таблицы для кодировщика</th>
                     <th>Имя таблицы для решеток</th>
-                    <th>Редактировать / Удалить</th>
+                    <th>Редактировать</th>
+                    <th>Удалить</th>
 				</tr>
 				{% for file in list_of_files %}
 					<tr>
@@ -114,11 +116,8 @@
                         <td>{{file.file_path}}</td>
                         <td>{{file.file_tableEncoder}}</td>
                         <td>{{file.file_tableOrderings}}</td>
-						<td>
-							<p><a class="btn btn-sm btn-info" href="{% url 'update_file' file.id %}">Редактировать</a></p>
-							
-							<p><a class="btn btn-sm btn-danger" href="{% url 'delete_file' file.id %}">Удалить</a></p>
-						</td>
+						<td><a class="btn btn-sm btn-info" href="{% url 'update_file' file.id %}">Редактировать</a></td>
+						<td><a class="btn btn-sm btn-danger" href="{% url 'delete_file' file.id %}">Удалить</a></td>
 
 					</tr>
 				{% endfor %}
@@ -128,6 +127,7 @@
 		</div>
 	</div>
 </div>
+<br>
 <div class="row">
     <div class="col-md-12">
 		<h5>Выборки</h5>
@@ -142,7 +142,8 @@
 					<th>Целевое свойство</th>
                     <th>Имя таблицы</th>
                     <th>Имя таблицы-кодировщика</th>
-                    <th>Редактировать / Удалить</th>
+                    <th>Редактировать</th>
+                    <th>Удалить</th>
 				</tr>
 				{% for sample in list_of_samples %}
 					<tr>
@@ -152,11 +153,8 @@
                         <td>{{sample.fileSample_attr}}</td>
                         <td>{{sample.fileSample_table}}</td>
                         <td>{{sample.fileSample_encoder}}</td>
-						<td>
-							<p><a class="btn btn-sm btn-info" href="{% url 'update_sample' sample.id %}">Редактировать</a></p>
-							
-							<p><a class="btn btn-sm btn-danger" href="{% url 'delete_sample' sample.id %}">Удалить</a></p>
-						</td>
+						<td><a class="btn btn-sm btn-info" href="{% url 'update_sample' sample.id %}">Редактировать</a></td>
+						<td><a class="btn btn-sm btn-danger" href="{% url 'delete_sample' sample.id %}">Удалить</a></td>
 
 					</tr>
 				{% endfor %}

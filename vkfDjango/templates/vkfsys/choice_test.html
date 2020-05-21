@@ -12,8 +12,8 @@
         <form action = "{% url 'vkfsys:prediction' ex_id %}" enctype="multipart/form-data" method="post">
         {% csrf_token %}
             <div class="card text-center">
-                <div class="card-header">
-                    Выберите тестовую выборку
+                <div class="card-header" id="card-header">
+                    ВЫБЕРИТЕ ТЕСТОВУЮ ВЫБОРКУ
                 </div>
                 <div class="card-body">
                     <h5 class="card-title"></h5>
@@ -40,9 +40,9 @@
                 
                     
                 </div>
-                <div class="card-footer text-muted">
-                    <a class="btn btn-secondary" href="{% url 'vkfsys:ct_return' ex_id %}">Назад</a>
-                    <button class="btn btn-secondary" type="submit">ОК
+                <div class="card-footer text-muted" id="card-footer">
+                    <a class="btn btn-outline-light" href="{% url 'vkfsys:ct_return' ex_id %}">Назад</a>
+                    <button class="btn btn-outline-light" type="submit">ОК
                     </button>
                 </div>
             </div>

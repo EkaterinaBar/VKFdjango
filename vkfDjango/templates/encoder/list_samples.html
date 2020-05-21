@@ -3,46 +3,64 @@
 {% block title %} Существующие выборки {% endblock %}
 
 {% block content %}
+{%  include 'accounts/navbar.html' %}
 
-    {% if samples %}
+<br>
+<div class="container-fluid">
+    <div class="d-flex justify-content-center">
+        <form action = "{% url 'encoder:create_table' %}" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <div class="card text-center">
+                <div class="card-header" id="card-header">
+                    СУЩЕСТВУЮЩИЕ ВЫБОРКИ
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Тип выборки</th>
+                                <th scope="col">Название файла</th>
+                                <th scope="col">Целевое свойство</th>
+                                <th scope="col">Имя таблицы в базе</th>
+                                <th scope="col">Имя таблицы-кодировщика</th>
+                                <th scope="col">Содержание таблицы</th>
+                            </tr>
+                        </thead>
+                    <tbody>
+                        {% if samples %}  
+                            {% for s in samples %}
+                            <tr>
+                                <td>{{s.fileSample_type}}</td>
+                                <td>{{s.fileSample_name}}</td>
+                                <td>{{s.fileSample_attr}}</td>
+                                <td>{{s.fileSample_table}}</td>
+                                <td>{{s.fileSample_encoder}}</td>
+                                <td>
+                                    <a class="btn btn-light" href="{% url 'encoder:show_table' s.id s.fileSample_table 'samples' %}">Посмотреть</a>
+                                </td>
+                            </tr>  
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                            Строк нет!
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+                </div>
+                <div class="card-footer text-muted" id="card-footer">
+                    <button class="btn btn-outline-light" type="submit">Назад
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
 
-        {% for s in samples %}
-
-            <table border="1" >
-                <caption>{{s.fileSample_name}}</caption>
-                <tr>
-                <th>Тип выборки</th>
-                <th>Название файла</th>
-                <th>Целевое свойство</th>
-                <th>Имя таблицы в базе</th>
-                <th>Имя таблицы-кодировщика</th>
-                <th>Содержание таблицы</th>
-                </tr>
-                <tr>
-                <td>{{s.fileSample_type}}</td>
-                <td>{{s.fileSample_name}}</td>
-                <td>{{s.fileSample_attr}}</td>
-                <td>{{s.fileSample_table}}</td>
-                <td>{{s.fileSample_encoder}}</td>
-                <td>
-                    <form action = "{% url 'encoder:show_table' s.id s.fileSample_table 'samples' %}" enctype="multipart/form-data" method="post">
-                        {% csrf_token %}
-                        <button type="submit">Посмотреть</button>
-                    </form>
-                </td>
-            </tr>
-            </table>
-
-        {% endfor %}
-
-    {% else %}
-        Пока выборок нет
-    {% endif %}
-
-    <form action = "{% url 'encoder:create_table' %}" enctype="multipart/form-data" method="post">
-        {% csrf_token %}
-        <button type="submit">Назад</button>
-    </form>
+</div>
+<div class="container-fluid">
+    
+</div>
     
 
 {% endblock %}

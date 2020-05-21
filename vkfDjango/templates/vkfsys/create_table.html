@@ -10,8 +10,8 @@
     <div class="d-flex justify-content-center">
         
         <div class="card text-center">
-            <div class="card-header">
-                {{data}}
+            <div class="card-header" id="card-header">
+                <b>{{data}}</b>
             </div>
             <div class="card-body">
                 <h5 class="card-title"></h5>
@@ -26,11 +26,9 @@
                
                 
             </div>
-            <div class="card-footer text-muted">
-                <form action = "{% url 'vkfsys:choice_test' ex.id %}" enctype="multipart/form-data" method="post">
-                    {% csrf_token %}
-                    <button class="btn btn-secondary" type="submit">Далее</button>
-                </form>
+            <div class="card-footer text-muted" id="card-footer">
+                <a class="btn btn-outline-light" href="{% url 'vkfsys:choice_test' ex.id  %}">Далее</a>
+                
             </div>
         </div>
         

@@ -3,52 +3,64 @@
 {% block title %} {{fileFor.file_name}} {% endblock %}
 
 {% block content %}
+{%  include 'accounts/navbar.html' %}
 
-<form action = "{% url 'encoder:list_filesFor' %}" enctype="multipart/form-data" method="post">
-    {% csrf_token %}
-    <p><button type="submit">Вернуться к списку файлов</button></p>
-</form>
-
-<h2>{{fileFor.file_name}}</h2>
-<p>{{fileFor.file_path}}</p>
-<form action = "{% url 'encoder:fill_names' fileFor.id %}" enctype="multipart/form-data" method="post">
-    {% csrf_token %}
-    <button type="submit">СФОРМИРОВАТЬ НОВЫЕ ТАБЛИЦЫ</button>
-</form>
 <br>
-<br>
-{% if fileFor.file_tableEncoder %}
-       <span>
-            <h2>{{fileFor.file_tableEncoder}}</h2>
-            <br>
-            <form action = "{% url 'encoder:show_table' fileFor.id fileFor.file_tableEncoder 'files' %}" enctype="multipart/form-data" method="post">
-                {% csrf_token %}
-                <button type="submit">Показать содержимое таблицы {{fileFor.file_tableEncoder}}</button>
-            </form>
-        </span>
-        <span>
-            <h2>{{fileFor.file_tableOrderings}}</h2>
-            <br>
-            <form action = "{% url 'encoder:show_table' fileFor.id fileFor.file_tableOrderings 'files' %}" enctype="multipart/form-data" method="post">
-                {% csrf_token %}
-                <button type="submit">Показать содержимое таблицы {{fileFor.file_tableOrderings}}</button>
-            </form>
-        </span>
-        <span>
-            <br>
-            <form action = "{% url 'encoder:create_file' fileFor.id 'xml' %}" enctype="multipart/form-data" method="post">
-                {% csrf_token %}
-                <button type="submit">Сформировать из таблиц XML</button>
-            </form>
-            <form action = "{% url 'encoder:create_file' fileFor.id 'json' %}" enctype="multipart/form-data" method="post">
-                {% csrf_token %}
-                <button type="submit">Сформировать из таблиц JSON</button>
-            </form>
-        </span>
-{% else %}
-    Таблицы еще не сформированы
-{% endif %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-center">
+            <div class="card text-center">
+                <div class="card-header" id="card-header">
+                     ФАЙЛ {{fileFor.file_name}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    
 
+                    {% if fileFor.file_tableEncoder %}
+                    
+                    <table class="table table-bordered">
+                        
+                        <tbody>
+                            
+                              <tr>
+                                <td>Таблица-кодировщик</td>
+                                <td>{{fileFor.file_tableEncoder}}</td>
+                                <td>
+                                    <a class="btn btn-light" href="{% url 'encoder:show_table' fileFor.id fileFor.file_tableEncoder 'files' %}">Посмотреть</a>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>Таблица с отношениями</td>
+                                <td>{{fileFor.file_tableOrderings}}</td>
+                                <td>
+                                    <a class="btn btn-light" href="{% url 'encoder:show_table' fileFor.id fileFor.file_tableOrderings 'files' %}">Посмотреть</a>
+                                </td>
+                              </tr>
+                        </tbody>
+                    </table>
+                    <form action = "{% url 'encoder:fill_names' fileFor.id %}" enctype="multipart/form-data" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-light btn-block" type="submit">Сформировать новые таблицы</button>
+                    </form>
+                    <a class="btn btn-light" href="{% url 'encoder:create_file' fileFor.id 'xml' %}">Сформировать из таблиц XML</a>
+                    <a class="btn btn-light" href="{% url 'encoder:create_file' fileFor.id 'json' %}">Сформировать из таблиц JSON</a>
+                    {% else %}
+                    <form action = "{% url 'encoder:fill_names' fileFor.id %}" enctype="multipart/form-data" method="post">
+                        {% csrf_token %}
+                        
+                        <button class="btn btn-light btn-block" type="submit">Сформировать таблицы</button>
+                        <br>
+                        <small>Для файла '{{fileFor.file_name}}' таблиц пока нет</small>
+                    </form>
+                    {% endif %}
+                </div>
+                <div class="card-footer text-muted" id="card-footer">
+                    <a class="btn btn-outline-light" href="{% url 'encoder:list_filesFor' %}">К списку файлов</a>
+                </div>
+            </div>  
+    </div>
+
+</div>    
 
 
 {% endblock %}

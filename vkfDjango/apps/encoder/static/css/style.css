@@ -39,7 +39,11 @@ body,form {
     #total-samples{
         background-color: #ffbae1;
     }
-
+    #card-header, #card-footer {
+        color: white;
+        background-color: #ccccff;
+        font-size: 18px;
+    }
     .hello-msg{
     font-size: 16px;
     color: black;
