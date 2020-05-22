@@ -7,8 +7,8 @@
 	<div class="col-md-6">
 		<div class="card card-body">
 
-
-			<p>Точно хотите удалить "{{ex}}"?</p>
+			<p>Точно хотите удалить эксперимент пользователя {{ex.user}} с количеством гипотез: {{ex.num_hyps}}, обучающей выборкой: {{ex.table_samp}} 
+				и тестовой выборкой: {{ex.table_test}}?</p>
 
 			<form action="{% url 'delete_ex' ex.id  %}" method="POST">
 				
